@@ -7,4 +7,5 @@ effects: http://greensock.com/docs/#/HTML5/GSAP/TweenMax/.
 In addition, many banners use the Javascript date object and methods to change the tune in messaging based on the client date/time.
 
 Sample HTML: https://github.com/danielledc/espndigital/blob/master/xgamessample.html
+
 Sample JS: https://github.com/danielledc/espndigital/blob/master/xgamessamplejs.html
