@@ -1,0 +1,415 @@
+<!--
+   Sample HTML5 banner built to promote XGames tune in, using GSAP TweenMax library
+-->
+
+<!doctype html>
+<html>
+	<head>
+	<title>XGames</title>
+    <script src="https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/js/webfontloader.js"></script>
+	<script>
+		WebFont.load({
+		custom: {
+		  families: [ 'DINOT-Bold', 'DINPro-Medium']
+		}
+	  });
+   </script>
+	<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+		line-height:1;
+	
+	}
+
+   	@font-face {
+		font-family:DINPro-Medium;
+		src: url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/fonts/DINPro-Medium.eot), url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/fonts/DINPro-Medium.otf);
+		font-weight:normal;
+	}
+	@font-face {
+		font-family:DINOT-Bold;
+		src: url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/fonts/DINOT-Bold.eot), url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/fonts/DINOT-Bold.otf);
+		font-weight:normal;
+	}
+	
+	body{
+		color:#000;
+		margin:0;
+		padding:0;
+		text-align:center;
+	    text-transform:uppercase;
+	}
+	
+	#xgWrap{
+		width:300px;
+		height:250px;
+		overflow:hidden;
+		cursor:pointer;
+		position:relative;
+		text-align:center;
+	
+	}
+	#bkgdTop{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_bkgdTop.jpg) no-repeat;
+		background-size:300px;
+		height:199px;
+		width:300px;
+		z-index:2;
+		position:absolute;
+			
+	}
+	
+	#bkgdBottomLeft{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_bkgdBottomLeft.jpg) no-repeat;
+		background-size:23px;
+		height:52px;
+		width:23px;
+		top:199px;
+		z-index:0;
+		position:absolute;
+		z-index:0;
+		
+	}
+	#bkgdBottomRight{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_bkgdBottomRight.jpg) no-repeat;
+		background-size:278px;
+		height:52px;
+		width:278px;
+		top:199px;
+		z-index:0;
+		left:23px;
+		position:absolute;
+		z-index:5;
+	}
+	#whiteDiv{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_white.png) repeat-x;
+		background-color:#fff;
+		width:300px;
+		position:absolute;
+		top:0;
+		height:250px;
+		z-index:6;
+	}
+	
+	#xgLogo1{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_xgLogo.png) no-repeat;	
+		position:absolute;
+		background-size:69px;
+		height:96px;
+		width:69px;
+		left:0;
+		right:0;
+		margin:0 auto;
+		top:70px;
+		z-index:3;
+		
+	}
+	#xgLogo2{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_xgLogo.png) no-repeat;	
+		position:absolute;
+		background-size:69px;
+		height:96px;
+		width:69px;
+		left:0;
+		right:0;
+		margin:0 auto;
+		top:0px;
+		z-index:3;
+		
+	}
+	#xGamesHeadline{
+		background:url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_xgHeadline.png) no-repeat;
+		background-size: 300px;
+		height:86px;
+		width:300px;
+		position:absolute;
+		top:0;
+		z-index:2;
+		
+	}
+	#mountainsBack{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_mountainsBack.png) center no-repeat;	
+		background-size:231px;
+		width:231px;
+		height:250px;
+		left:0;
+		right:0;
+		top:20px;
+		position:absolute;
+		margin:0 auto;
+		z-index:2;
+		
+	}
+	#mountainsFront{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_mountainsFront.png) bottom no-repeat;	
+		background-size:227px;
+		width:231px;
+		height:250px;
+		left:5px;
+		right:0;
+		position:absolute;
+		margin:0 auto;
+		top:-25px;
+		z-index:4;
+	}
+	#skier{
+		position:absolute;
+		
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_skier.png) center no-repeat;	
+		background-size:170px;
+		width:170px;
+		height:175px;
+		left:-200px;
+		right:0;
+		top:0;
+		margin:0 auto;
+		z-index:5;
+		
+	}
+	#photo{
+		position:absolute;
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_HenrikPhoto.png) no-repeat;
+		background-size:135px;
+		height:150px;
+		width:135px;
+		z-index:3;
+	}
+	#cta{
+		height:44px;
+		position:absolute;
+		z-index:5;
+		margin:0 auto;
+		left:0; 
+		right:0;
+	}
+	
+	#name{
+		background:url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_HenrikName.png) no-repeat;
+		background-size:50px;
+		height:43px;
+		width:50px;
+		left:170px;
+		top:155px;
+		z-index:5;
+		position:absolute;
+	}
+ 
+	
+	
+	#espnLogo{
+		background:url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_espnLogo.png) no-repeat;
+		background-size:57px;
+		height:14px;
+		width:57px;
+		display:inline-block;
+		vertical-align:middle;
+		
+	}
+	#abcLogo{
+		background:url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_abcLogo.png) no-repeat;
+		background-size:25px;
+		height:25px;
+		width:25px;
+		display:inline-block;
+		 vertical-align:middle;
+		
+	}
+	#watchESPNLogo{
+		display:inline-block; 
+		background:url(https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_watchESPNLogo.png) no-repeat;
+		background-size:80px;
+		height:23px;
+		width:80px;
+		vertical-align:middle;
+
+		
+	 }	
+	
+	
+	#showMessage{
+		font-family:DINOT_Condensed_Medium;
+		font-size:1.6em;
+	    color:#dda623;
+		display:inline-block;
+		left:0;
+		text-align:center;
+	 	position:relative;
+		z-index:0;
+		letter-spacing:1px;
+	}
+	
+	#tuneIn{
+		font-family:DINOT-Bold; 
+		position:absolute;
+		 top:100px;
+		right:0;
+		margin:0px auto;
+		padding:22px;
+	   z-index:6;
+	   font-size:2em;
+	   left:0;
+	}
+	#presentedBy{
+		font-size:0.6em;
+		font-family:DINPro-Medium; 
+		z-index:5;
+		padding-left:7px;
+		height:90px;
+		position:relative;
+	}
+	
+	#sponsor{
+		width:100px;
+		 position: absolute;
+  		top: 50%;
+		transform: translate(0%,-50%);
+		-webkit-transform:translate(0%,-50%);
+	}
+	#sponsorImg{
+		padding-top:5px;	
+
+	}
+	#line{
+		height: 25px;
+		width: 3px;
+		margin:  0px auto;
+		 border-right: 2px solid #000;	
+		 display:inline-block;
+		 vertical-align:middle;
+		margin-right:6px;
+	}
+	
+	#networks{
+		text-align:center;	
+	}
+	#timeZone{
+	    font-size:20px;	
+	}
+	#on{
+		font-size:22px;		
+	}
+	#small{
+		font-size:20px;	
+	}
+    #skier, #on, #photo, #name, #cta, #getReady, #live, #seeSchedule, #presentedBy, #tuneIn, #xgamesHeadline,  #logo1, #logo2, #logo3, #logo4, #logo5, #logo6, #logo7, #logo8, #logo9{
+		display:none;	
+	}
+	</style>
+    <script> if(typeof parent.window.googletag !== 'object') document.write('<scr'+'ipt type="text/javascript" src="mraid.js"></scr'+'ipt>');
+   </script>
+ 	<script src="https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/js/TweenMax.min.js"></script>
+   <script src="https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/js/timeCoding_v4.js"></script>
+   	<script type="text/javascript">
+	  	
+		
+	 function animate(){
+		 
+		CSSPlugin.defaultTransformPerspective = 500;
+	    
+	  
+				var animateBanner = new TimelineMax({repeat:2,repeatDelay:4.2});
+				
+		
+				animateBanner.add([
+					TweenMax.to(document.getElementById("whiteDiv"), 0.5, {autoAlpha:0, delay:0, display:"none"}),
+					TweenMax.fromTo(document.getElementById("skier"), 1, {autoAlpha:1,delay:0, x:"-100px", y:"200px",  z: 0.0, rotationZ: 0.01,scale:0.6,rotation:180,ease:Power1.easeOut},{autoAlpha:1,x:"200px", y:"70px",  z: 0.0, rotationZ: 0.01, delay:1.5,ease:Power1.easeOut,rotation:360, scale:1, display:"block"}),
+					TweenMax.to(document.getElementById("xgLogo1"), 0.5, {y:"-200px",  delay:1.5, display:"none"}),
+					TweenMax.to(document.getElementById("mountainsBack"), 0.5, {x:"-60px",  delay:1.5 }),
+					TweenMax.to(document.getElementById("mountainsFront"), 0.5, {x:"-60px", delay:1.5}),
+					
+					TweenMax.fromTo(document.getElementById("photo"), 0.5, {autoAlpha:1,delay:0, x:"20px", y:"300px",  z: 0.0, rotationZ: 0.01,ease:Power1.easeOut},{autoAlpha:1,x:"20px", y:"65px",  z: 0.0, rotationZ: 0.01, delay:2.2,ease:Power1.easeOut,display:"block"}),
+					TweenMax.fromTo(document.getElementById("name"), 0.5, {autoAlpha:0,delay:0},{autoAlpha:1,delay:2.7,display:"block"}),
+					TweenMax.fromTo(document.getElementById("xGamesHeadline"), 0.5, {autoAlpha:1,delay:0, x:"0px", y:"-100px",  z: 0.0, rotationZ: 0.01,ease:Power1.easeOut},{autoAlpha:1,x:"0px", y:"-8px",  z: 0.0, rotationZ: 0.01, delay:2.8,ease:Power1.easeOut,display:"block"}),
+					TweenMax.fromTo(document.getElementById("cta"), 0.5, {autoAlpha:1,delay:0, x:"0px", y:"300px" },{autoAlpha:1,x:"0px", y:"200px",  delay:3,ease:Power1.easeOut,display:"block"}),
+					TweenMax.to(document.getElementById("mountainsBack"), 0.5, {x:"-300px",  delay:6, display:"none" }),
+					TweenMax.to(document.getElementById("mountainsFront"), 0.5, {x:"-300px", delay:6, display:"none"}),
+					TweenMax.to(document.getElementById("photo"), 0.5, {x:"-300px",  delay:6, display:"none" }),
+					TweenMax.to(document.getElementById("name"), 0.5, {x:"-300px",  delay:6, display:"none" }),
+					TweenMax.to(document.getElementById("skier"), 0.5, {x:"400px", delay:6, display:"none"}),
+					TweenMax.to(document.getElementById("xGamesHeadline"), 0.5, {y:"-100x", delay:6, display:"none"}),
+					TweenMax.fromTo(document.getElementById("xgLogo2"), 0.5, {autoAlpha:1,delay:0, x:"-45px", y:"-100px",  z: 0.0, rotationZ: 0.01,ease:Power1.easeOut},{autoAlpha:1,x:"-45px", y:"10px",  z: 0.0, rotationZ: 0.01, delay:6.1,ease:Power1.easeOut,display:"inline-block"}),
+					TweenMax.fromTo(document.getElementById("presentedBy"), 0.5, {autoAlpha:1,delay:0, x:"-5px", y:"-100px"},{autoAlpha:1,x:"-5px", y:"15px",  delay:6.2,ease:Power1.easeOut,display:"inline-block"}),
+			
+					TweenMax.fromTo(document.getElementById("tuneIn"), 0.5, {autoAlpha:1,delay:0, x:"300px", y:"0px",  ease:Power1.easeOut},{autoAlpha:1,x:"0px", y:"0px",   delay:6.3,ease:Power1.easeOut,display:"block"}),
+						], "+=0", "normal");
+				
+				var animateFade = new TimelineMax({repeat:1,delay:10.5, repeatDelay:10.5});
+				
+		
+				animateFade.add([
+					TweenMax.to(document.getElementById("whiteDiv"), 0.5, {autoAlpha:1, delay:0, display:"block"})
+				
+						], "+=0", "normal");
+				
+		}
+
+	</script>
+	</head>
+	<body onload="init('300x250','%%CLICK_URL_UNESC%%','%%PATTERN:adId%%', '%%CACHEBUSTER%%');">
+	<div id="xgWrap" >
+    	<div id="bkgdTop" > </div>
+        <div id="bkgdBottomLeft"> </div>
+        <div id="bkgdBottomRight"> </div>
+    	<div id="xgLogo1"></div>
+        <div id="xgLogo2"></div>
+        <div id="mountainsBack"></div>
+        <div id="photo"></div>
+        <div id="name"></div>
+        <div id="mountainsFront"></div>
+        <div id="skier"></div>
+        <div id="xGamesHeadline"></div>
+        <div id="cta">
+        	<img src="https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_ctaGetReady.png" id="getReady"  height="44" />
+            <img src="https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_ctaSchedule.png" id="seeSchedule"  height="44"  />
+        	<img src="https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_ctaLive.png" id="live" height="44"   />
+        </div>
+        <div id="presentedBy">
+      
+         <div id="sponsor">
+           SPONSORED BY
+        <div id="sponsorImg">
+        <img src="https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_attLogo.png" height="41" id="logo1"  />
+        <img src="https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_coorsLogo.png" height="29" id="logo2"  />
+        <img src="https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_goProLogo.png" height="26"  id="logo3" />
+        <img src="https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_harleyLogo.png" height="51" id="logo4"  />
+        <img src="https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_intelLogo.png" height="36" id="logo5"   />
+        <img src="https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_jeepLogo.png" height="23" id="logo6"  />
+        <img src="https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_monsterLogo.png" height="29"  id="logo7" />
+        <img src="https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_navyLogo.png" height="30" id="logo8"  />
+        <img src="https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_realCostLogo.png" height="49" id="logo9"  />
+        
+        </div>
+        </div>
+        </div>
+        <div id="tuneIn">
+            <div id="showScheduleMessage"></div>
+            <div id="networks">
+            <div id="on">on</div>
+            	<div id="espnLogo">
+                </div>
+                <div id="abcLogo"></div>
+                <div id="watchESPNLogo"></div>
+            </div>
+        </div>
+     </div>
+     <div id="whiteDiv"></div>
+     <script type="text/javascript">
+		<!--//--><![CDATA[//><!--
+			var images = new Array()
+			function preload() {
+				for (i = 0; i < preload.arguments.length; i++) {
+					images[i] = new Image()
+					images[i].src = preload.arguments[i]
+				}
+			}
+			preload(
+					"https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_xgHeadline.png",
+					"https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_HenrikPhoto.png",
+					"https://cdn.secure.espn.go.com/i/dynbanners/xgames/2016/Aspen/images/15120793IB1_XG_300x250_mountainsBack.png"
+					
+			)
+		//--><!]]>
+	</script>
+	</body>
+</html>
