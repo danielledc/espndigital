@@ -8,4 +8,4 @@ In addition, many banners use the Javascript date object and methods to change t
 
 Sample HTML: https://github.com/danielledc/espndigital/blob/master/xgamessample.html
 
-Sample JS: https://github.com/danielledc/espndigital/blob/master/xgamessample.html
+Sample JS: https://github.com/danielledc/espndigital/blob/master/xgamessample.js
