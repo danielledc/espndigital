@@ -1,0 +1,353 @@
+<!doctype html>
+<html>
+	<head>
+	<title>MLS</title>
+ <script src="https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/js/webfontloader.js"></script>
+	<script>
+		WebFont.load({
+		custom: {
+		  families: [ 'DINOT-Black', 'DINOT']
+		}
+	  });
+   </script>
+	<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+		line-height:1;
+	
+	}
+	
+	body{
+		color:#fff;
+		margin:0;
+		padding:0;
+		font-family:DINOT-Black;
+		text-transform:uppercase;
+	}
+	@font-face {
+		font-family:DINOT-Black;
+		src: url(https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/fonts/DINOT-Black.eot), url(https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/fonts/DINOT-Black.otf);
+		font-weight:normal;
+	}
+	@font-face {
+		font-family:Dinot;
+		src: url(https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/fonts/DINOT.eot), url(https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/fonts/DINOT.otf);
+		font-weight:normal;
+	}
+	#socWrap{
+		background:#000;
+		width:1280px;
+		height:100px;
+		text-align:left;
+		overflow:hidden;
+		cursor:pointer;
+		position:relative;
+	
+	}
+	#colLeft{
+		float:left;
+		position:absolute;
+		
+		
+	}
+	#colCenter{
+		float:left;	
+		display:table;
+		height:100px;
+		width:680px;
+		left:270px;
+		
+		position:absolute;
+	}
+	#colRight{
+		float:right;
+		display:inline-block;	
+	}
+	.soccerLogoSunday{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_mlsSundayLogo.png) center no-repeat;
+		display:inline-block;
+		background-size:222px;
+		height:100px;
+		width:222px;	
+		margin:5px;
+		margin-left:10px;
+		z-index:1;
+		left:500px;
+		position:absolute;
+		
+	}
+	.soccerLogoOnly{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_mlsLogoOnly.png) center no-repeat;
+		display:inline-block;
+		background-size:84px;
+		height:100px;
+		width:84px;	
+		margin:2px;
+		margin-left:55px;
+		left:500px;
+		position:absolute;
+		
+	}
+	.soccerLogoRivalry{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_mlsRivalryLogo.png) center no-repeat;
+		display:inline-block;
+		background-size:270px;
+		height:100px;
+		width:270px;	
+		margin:2px;
+		margin-left:10px;
+		z-index:1;
+		left:500px;
+		position:absolute;
+		
+	}
+	.tuneInMessageLarge{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_tuneInBkgdLarge.png) center no-repeat;
+		display:inline-block;
+		background-size:259px;
+		background-position:3px 0px;
+		height:33px;
+		width:259px;	
+		padding-left:9px;
+		font-size:1.7em;
+		text-align:center;	
+		margin-top:36px;
+			
+	}
+	.tuneInMessage{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_tuneInBkgd.png) center no-repeat;
+		display:inline-block;
+		background-size:204px;
+		background-position:4px 1px;
+		height:31px;
+		width:204px;
+		padding-left:9px;
+		font-size:1.7em;
+		text-align:center;	
+		margin-top:36px;
+		
+			
+	}
+	
+	.leftDiagonal{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_leftDiagonal.png) center no-repeat;
+		display:inline-block;
+		background-size:329px;
+		height:100px;
+		width:329px;	
+		z-index:0;
+		margin-right:15px;
+	}	
+	.leftDiagonalSaturday{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_leftDiagonalSaturday.png) center no-repeat;
+		display:inline-block;
+		background-size:222px;
+		height:100px;
+		width:222px;	
+		z-index:0;
+		margin-right:15px;
+	}	
+	 #cta{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_ctaDiagonal.png) center no-repeat;
+		display:inline-block;
+		background-size:340px;
+		height:100px;
+		width:340px;		 
+		
+	 }
+	 .ctaScheduleBtn{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_ctaSchedule.png) center no-repeat;
+		display:inline-block;
+		background-size:301px;
+		height:100px;
+		margin-left:35px;
+		width:301px;	
+		position:absolute;	
+		right:0; 
+		top:0;
+	 }
+	 .ctaLiveBtn{
+		background: url(https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_ctaLiveNow.png) center no-repeat;
+		display:inline-block;
+		background-size:301px;
+		height:100px;
+		margin-left:35px;
+		width:301px;	
+		position:absolute;	
+		right:0; 
+		top:0;
+		 
+	 }
+	
+	.team{
+		
+		display:inline;	
+	}
+	.matchUp{
+		top:0;
+		vertical-align:top;
+		 display: inline-block;
+	}
+	 #scheduleMessage{
+		font-size:1.3em;
+		display:table-cell;
+		vertical-align:middle;
+	}
+	.vs{
+		text-transform:lowercase;
+		font-family:DINOT;
+		font-size:14px;
+	}
+	
+	 .time{
+		font-family:DINOT;
+	 }
+	 #tuneInTime{
+		padding-top:3px; 
+	 }
+	 
+	 #networks{
+		display:inline-block;
+		vertical-align:middle; 
+	 }
+		
+	 .table2{
+		display:inline-block;
+		text-align:center;
+	    margin-right:20px;
+		line-height:1.2em;
+	
+	 }
+	 .table1{
+		line-height:1.2em;
+		text-align:left;
+	 }
+	#tuneIn{
+		position:absolute;	
+		margin:5px;
+		width:400px;
+		text-align:center;
+		
+	}
+
+	
+	 #soccerLogo, #leftDiagonal, #tuneInMessage,  #cta, #ctaBtn{
+		display:none;	
+	}
+	.table1, .table2{
+		visibility:hidden;	
+	}
+    .timeZone{
+		font-size:14px;	
+	}
+	.timeZone1{
+		font-size:16px;	
+	}
+	
+	</style>
+   <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/js/TweenMax.min.js"></script>
+    <script src="https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/js/games.json"></script>
+   <script src="https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/js/timeCoding_v4.js"></script>
+   	<script type="text/javascript">
+
+		
+	$( document ).ready(function() {
+	
+		init('1280x100','%%CLICK_URL_UNESC%%');
+	
+	});
+	 function animate(){
+	
+	CSSPlugin.defaultTransformPerspective = 500;
+	
+    	
+	  
+				var animateBanner = new TimelineMax({repeat:1});
+				 
+					
+				animateBanner.add([
+					 TweenMax.fromTo($("#soccerLogo"), 0.5, { x:"0px", autoAlpha:0, delay:0,  ease: Power1.easeOut},{ autoAlpha:1,display:"inline-block", delay:0.5,  ease: Power1.easeOut}),
+					 TweenMax.to($("#soccerLogo"), 0.5, { x:"-500px", y:"0px", delay:1.5,  ease: Power1.easeOut}),
+					 TweenMax.fromTo($("#leftDiagonal"), 0.5, {x:"200px", y:"-200px",  delay:0,  ease: Power1.easeOut},{ x:"0px", y:"0px",display:"inline-block", delay:1.9,  ease: Power1.easeOut}),
+					   TweenMax.fromTo($("#tuneInMessage"), 0.5, {x:"150px", y:"-100px",  delay:0,  ease: Power1.easeOut},{ x:"0px", y:"0px",display:"inline-block", delay:2.3,  ease: Power1.easeOut}),
+					
+					     TweenMax.staggerTo( $(".table1, .table2"), 0.5, {   autoAlpha:1, visibility:"visible", delay:2.7 }, 0.3),
+						TweenMax.fromTo($("#ctaBtn"), 0.5, {x:"-100px", y:"150px",  delay:0},{ x:"0px", y:"0px",display:"inline-block", delay:ctaDelay,  ease: Power4.easeOut}),
+						 TweenMax.fromTo($("#cta"), 0.5, {x:"-100px", y:"150px",  delay:0},{ x:"0px", y:"0px",display:"inline-block", delay:ctaDelay+0.2,  ease: Power4.easeOut}),
+						      TweenMax.to($(".table1, .table2"), 0.5, { autoAlpha:0, visibility:"hidden", delay:7}),
+							  TweenMax.to($("#ctaBtn, #cta, #soccerLogo, #leftDiagonal,#tuneInMessage"), 0.5, { autoAlpha:0, delay:7, display:"none"})  
+				
+				
+						], "+=0", "normal");
+					
+				
+				var animateBannerFinish = new TimelineMax({repeat:0, delay:15});		
+						
+		   		animateBannerFinish.add([
+				TweenMax.to($("#leftDiagonal"), 0.5, { autoAlpha:1, display:"none", delay:0}),
+								 TweenMax.to($("#tuneInMessage"), 0.5, { autoAlpha:1, display:"none", delay:0}),
+								 TweenMax.to($(".table1, .table2"), 0.5, { autoAlpha:0,visibility:"hidden",delay:0}),
+								 TweenMax.to($("#cta"), 0.5, { autoAlpha:1, delay:0, display:"none"}), 
+								  TweenMax.to($("#ctaBtn"), 0.5, { autoAlpha:1, delay:0, display:"none"}),
+								   TweenMax.to($("#soccerLogo"), 0.5, { x:"0px",display:"none",delay:0}),
+								 TweenMax.fromTo($("#soccerLogo"), 0.5, { autoAlpha:0, delay:0,  ease: Power1.easeOut},{ autoAlpha:1,display:"inline-block", delay:0.5,  ease: Power1.easeOut}),
+					 TweenMax.to($("#soccerLogo"), 0.5, { x:"-500px", y:"0px", delay:1.5,  ease: Power1.easeOut}),
+					 TweenMax.fromTo($("#leftDiagonal"), 0.5, {x:"200px", y:"-200px",  delay:0,  ease: Power1.easeOut},{ x:"0px", y:"0px",display:"inline-block", delay:1.9,  ease: Power1.easeOut}),
+					   TweenMax.fromTo($("#tuneInMessage"), 0.5, {x:"150px", y:"-100px",  delay:0,  ease: Power1.easeOut},{ x:"0px", y:"0px",display:"inline-block", delay:2.3,  ease: Power1.easeOut}),
+					
+					     TweenMax.staggerTo( $(".table1, .table2"), 0.5, {   autoAlpha:1, visibility:"visible", delay:2.7 }, 0.3),
+						 TweenMax.fromTo($("#ctaBtn"), 0.5, {x:"-100px", y:"150px",  delay:0},{ x:"0px", y:"0px",display:"inline-block", delay:ctaDelay,  ease: Power4.easeOut}),
+						 TweenMax.fromTo($("#cta"), 0.5, {x:"-100px", y:"150px",  delay:0},{ x:"0px", y:"0px",display:"inline-block", delay:ctaDelay+0.2,  ease: Power4.easeOut}),		], "+=0", "normal");
+				
+		}
+		
+	</script>
+	</head>
+	<body >
+	<div id="socWrap" >
+    	<div id="colLeft">
+        	<div id="soccerLogo"></div>
+            <div id="leftDiagonal"></div>
+        </div>
+        <div id="colCenter">
+        	
+        	 <div id="tuneInMessage"></div>
+              <div id="scheduleMessage"></div>
+        </div>
+        <div id="colRight">
+             <div id="cta">
+             	 
+             </div>
+             <div id="ctaBtn"></div>
+            
+        </div>
+        
+    	 
+     </div>
+     <div>
+         <script type="text/javascript">
+		<!--//--><![CDATA[//><!--
+			var images = new Array()
+			function preload() {
+				for (i = 0; i < preload.arguments.length; i++) {
+					images[i] = new Image()
+					images[i].src = preload.arguments[i]
+				}
+			}
+			preload(
+					"https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_mlsLogoOnly.png",
+					"https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_mlsSundayLogo.png",
+					"https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_mlsRivalryLogo.png",
+					"https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_ctaSchedule.png",
+					"https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_ctaLiveNow.png"
+					
+					
+			)
+		//--><!]]>
+		
+		</script>
+    	</div>
+	</body>
+</html>
