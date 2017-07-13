@@ -20,103 +20,84 @@ var months={"1": {month:"Jan"},
 			"11": {month:"Nov"},
 			"12": {month:"Dec"}
 };
-
-var teamAbbreviations=
-			{"Chicago": {abbrev:"CHI"},
-			"Colorado": {abbrev:"COL"},
-			"Columbus": {abbrev:"CLB"},
-			"D.C. United": {abbrev:"DC"},
-			"FC Dallas": {abbrev:"DAL"},
-			"Houston": {abbrev:"HOU"},
-			"LA Galaxy": {abbrev:"LA"},
-			"Montreal": {abbrev:"MTL"},
-			"New England": {abbrev:"NE"},
-			"NYCFC": {abbrev:"NYC"},
-			"NY Red Bulls": {abbrev:"NYR"},
-			"Orlando City": {abbrev:"ORL"},
-			"Philadelphia": {abbrev:"PHI"},
-			"Portland": {abbrev:"POR"},
-			"Real Salt Lake": {abbrev:"RSL"},
-			"San Jose": {abbrev:"SJ"},
-			"Seattle": {abbrev:"SEA"},
-			"Sporting KC": {abbrev:"SKC"},
-			"Toronto FC": {abbrev:"TOR"},
-			"Vancouver": {abbrev:"VAN"}
-};
-
-var networks={"FOX": {size1280x100Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_foxSportsLogo.png' height=22 style='vertical-align:-10%' class='foxLogo' />",
-					size1280x100Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_foxSportsLogo.png' height=22 style='vertical-align:-10%' class='foxLogo' />",
-					size970x66Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_foxSportsLogo.png' height=17 style='vertical-align:-12%' class='foxLogo' />",
-					size970x66Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_foxSportsLogo.png' height=22 style='vertical-align:-10%' class='foxLogo' />" ,
-					size728x90Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_foxSportsLogo.png' height=17 style='vertical-align:-12%' class='foxLogo' />",
-					size728x90Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_foxSportsLogo.png' height=22 style='vertical-align:-10%' class='foxLogo' />" ,
-					size300x250Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_foxSportsLogo.png' height=20 style='vertical-align:-10%' class='foxLogo' />",
-					size320x250Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_foxSportsLogo.png' height=22 style='vertical-align:-10%' class='foxLogo' />",
-					size320x50Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_320x50_foxSportsLogo.png' height=15 style='vertical-align:-18%' class='foxLogo' />",
-					size320x50Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_320x50_foxSportsLogo.png' height=22 style='vertical-align:-10%' class='foxLogo' />"  },
-			  "FS1": {size1280x100Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_fs1Logo.png' height=17 style='vertical-align:-4%' class='fs1Logo' />",
-			          size1280x100Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_fs1Logo.png' height=17 style='vertical-align:text-middle' class='fs1Logo'  />",
-					  size970x66Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_fs1Logo.png' height=14 style='vertical-align:-5%' class='fs1Logo' />",
-			          size970x66Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_fs1Logo.png' height=17 style='vertical-align:text-middle' class='fs1Logo'  />",
-					  size728x90Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_fs1Logo.png' height=14 style='vertical-align:-5%' class='fs1Logo' />",
-			          size728x90Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_fs1Logo.png' height=17 style='vertical-align:text-middle' class='fs1Logo'  />",
-					  size300x250Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_fs1Logo.png' height=16 style='vertical-align:-4%' class='fs1Logo'  />",
-			         size300x250Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_fs1Logo.png' height=17 style='vertical-align:text-middle' class='fs1Logo'  />",
-					 size320x50Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_320x50_fs1Logo.png' height=10 style='vertical-align:-3%' class='fs1Logo'  />",
-			         size320x50Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_320x50_fs1Logo.png' height=17 style='vertical-align:text-middle' class='fs1Logo'  />"},
-			  "ESPN":{size1280x100Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_espnLogo.png' height=17 style='vertical-align:-5%' class='espnLogo' />",
-			          size1280x100Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_espnLogo.png' height=23 style='vertical-align:-5%' class='espnLogo' />",
-					  size970x66Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_espnLogo.png' height=14 style='vertical-align:-5%' class='espnLogo' />",
-			          size970x66Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_espnLogo.png' height=18 style='vertical-align:-8%' class='espnLogo' />",
-					  size728x90Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_espnLogo.png' height=14 style='vertical-align:-5%' class='espnLogo' />",
-			          size728x90Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_espnLogo.png' height=18 style='vertical-align:-8%' class='espnLogo' />",
-					  size300x250Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_espnLogo.png' height=15 style='vertical-align:-5%' class='espnLogo' />",
-			          size300x250Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_espnLogo.png' height=17 style='vertical-align:-7%' class='espnLogo' />",
-					   size320x50Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_320x50_espnLogo.png' height=10 style='vertical-align:-3%' class='espnLogo' />",
-			          size320x50Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_320x50_espnLogo.png' height=13 style='vertical-align:-7%' class='espnLogo' />"},
-			  "ESPN2":{size1280x100Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_espn2Logo.png' height=16 style='vertical-align:-5%' class='espn2Logo' />",
-			          size1280x100Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_espn2Logo.png' height=23 style='vertical-align:-5%' class='espn2Logo'/>",
-					  size970x66Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_espn2Logo.png' height=13 style='vertical-align:-5%' class='espn2Logo' />",
-			          size970x66Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_espn2Logo.png' height=17 style='vertical-align:-8%' class='espn2Logo'/>",
-					  size728x90Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_espn2Logo.png' height=13 style='vertical-align:-5%' class='espn2Logo' />",
-			          size728x90Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_espn2Logo.png' height=17 style='vertical-align:-8%' class='espn2Logo'/>",
-					  size300x250Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_espn2Logo.png' height=15 style='vertical-align:-5%' class='espn2Logo' />",
-			          size300x250Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_1280x100_espn2Logo.png' height=17 style='vertical-align:-7%' class='espn2Logo' />",
-					  size320x50Small:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_320x50_espn2Logo.png' height=8 style='vertical-align:-3%' class='espn2Logo' />",
-			          size320x50Large:"<img src='https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/images/16022759IB1_SOC_320x50_espn2Logo.png' height=13 style='vertical-align:-7%' class='espn2Logo' />"
-					  }
-};
+var teamNames={
+			"Atlanta":{long:"Atlanta United FC",abbrev:"ATL"},
+			"Chicago":{long:"Chicago Fire",abbrev:"CHI"},
+			"Colorado":{long:"Colorado Rapids",abbrev:"COL"},
+			"Columbus":{long:"Columbus Crew SC",abbrev:"CLB"},
+			"D.C. United":{long:"D.C. United",abbrev:"DC"},
+			"FC Dallas":{long:"FC Dallas",abbrev:"DAL"},
+			"Houston":{long:"Houston Dynamo",abbrev:"HOU"},
+			"LA Galaxy":{long:"LA Galaxy",abbrev:"LA"},
+			"Minnesota":{long:"Minnesota United FC",abbrev:"MIN"},
+			"Montreal":{long:"Montreal Impact",abbrev:"MTL"},
+			"New England":{long:"New England Revolution",abbrev:"NE"},
+			"NYCFC":{long:"New York City FC",abbrev:"NYC"},
+			"NY Red Bulls":{long:"New York Red Bulls",abbrev:"NYR"},
+			"Orlando City":{long:"Orlando City SC",abbrev:"ORL"},
+			"Philadelphia":{long:"Philadelphia Union",abbrev:"PHI"},
+			"Portland":{long:"Portland Timbers",abbrev:"POR"},
+			"Real Salt Lake":{long:"Real Salt Lake",abbrev:"RSL"},
+			"San Jose":{long:"San Jose Earthquakes",abbrev:"SJ"},
+			"Seattle": {long:"Seattle Sounders",abbrev:"SEA"},
+			"Sporting KC": {long:"Sporting KC",abbrev:"SKC"},
+			"Toronto FC": {long:"Toronto FC",abbrev:"TOR"},
+			"Vancouver": {long:"Vancouver Whitecaps",abbrev:"VAN"}
 			
-var dfpAdID, cacheBust, adMacro, bannerSize, offset=5.0, ctaDelay, showLive=false, num=0, tuneInMessage, rivalryWeek=0,  games=[], gamesSorted=[], gamesSortedToPromote=[];
+}
+
+var imgSizes={
+			"1280x100":{ logoBigSize:"1280x100", logoSmallSize:"1280x100",  teamDiagonalSize:"100",teamLogoBigSize:"100", teamLogoSmallSize:"95"},
+			"728x90":{logoBigSize:"728x90", logoSmallSize:"728x90", teamDiagonalSize:"90",teamLogoBigSize:"90", teamLogoSmallSize:"90"},
+			"1024x66":{logoBigSize:"970x66", logoSmallSize:"970x66", teamDiagonalSize:"66",teamLogoBigSize:"68", teamLogoSmallSize:"60"},
+			"970x66":{logoBigSize:"970x66", logoSmallSize:"970x66", teamDiagonalSize:"66",teamLogoBigSize:"68", teamLogoSmallSize:"60"},
+			"300x250":{logoBigSize:"300x250", logoSmallSize:"1280x100", teamDiagonalSize:"250", teamLogoBigSize:"422", teamLogoSmallSize:"90"},
+			"320x50":{logoBigSize:"320x50", logoSmallSize:"970x66", teamDiagonalSize:"50",teamLogoBigSize:"50", teamLogoSmallSize:"43"},
+			"320x120":{logoBigSize:"300x250", logoSmallSize:"970x66", teamDiagonalSize:"120",teamLogoBigSize:"360", teamLogoSmallSize:"50"}
+}
+			
+var dfpAdID, cacheBust, adMacro,  offset=5.0, ctaDelay, showLive=false, num=0, showScheduleMessage, introText,   games=[], gamesSorted=[], gamesSortedToPromote=[];
 
 
+var defaultLink="http://www.espnfc.us/major-league-soccer/19/index";
 
 var now = new Date();
 
 var nowTimestamp=now.getTime(); 
-//change offset after daylight savings begins on 3/13/2016
-if(nowTimestamp>=1457852400000){
-		offset=4.0;
-}
+
 var theDay= now.getDay(); 
 var theDate= now.getDate();
 var theMonth=now.getMonth()+1;
 var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
 var nextweek = new Date(now.getFullYear(), now.getMonth(), now.getDate()+7);
 nextweek=nextweek.getTime();
-
+if(nowTimestamp>=1489298400000){
+		offset=4.0;
+	}
 
 $.ajax({
-  url: "https://cdn.secure.espn.go.com/i/dynbanners/mls/2016/Season/js/games.json",
+  url: "https://secure.espncdn.com/i/dynbanners/mls/2017/Season/js/games.json",
   success: function(data) {
-     for(var x in data){
-	
-		  if((parseInt(data[x].date,10)==theDate&&parseInt(data[x].month,10)==theMonth)||(parseInt(data[x].month,10)==theMonth&&parseInt(data[x].date,10)>theDate)||(parseInt(data[x].month,10)>theMonth)){	 
-		 	startTimeParts=data[x].startTime.split(":");
-			endTimeParts=data[x].endTime.split(":");
-			startTime=getTimeStamp(data[x].date, data[x].month, startTimeParts[0], startTimeParts[1]);
-			endTime=getTimeStamp(data[x].date, data[x].month, endTimeParts[0], endTimeParts[1]);
-			games.push(new game(data[x].teamOne, data[x].teamTwo, data[x].month, data[x].date, startTime, endTime, startTimeParts[0], startTimeParts[1],  data[x].rivalryWeek, data[x].liveLink, data[x].liveDeepLink,  data[x].network)); 
+	 for(var x in data){
+		 	var endTimeDate, endTimeMonth,  teamOne="", teamTwo="";
+		    startTimeParts=data[x].startTime.trim().split(":");
+			endTimeParts=data[x].endTime.trim().split(":");
+			startTime=getTimeStamp(data[x].date.trim(), data[x].month.trim(), startTimeParts[0], startTimeParts[1]);
+			if(endTimeParts[0]<startTimeParts[0]){
+				endTime=getTimeStampTomorrow(data[x].date.trim(), data[x].month.trim(), endTimeParts[0], endTimeParts[1]);
+			}
+			else endTime=getTimeStamp(data[x].date.trim(), data[x].month.trim(), endTimeParts[0], endTimeParts[1]);	
+			endTimeDate=new Date(endTime);
+			endTimeDate=endTimeDate.getDate();
+			endTimeMonth=new Date(endTime);
+			endTimeMonth=endTimeMonth.getMonth()+1;
+			
+			liveLink=data[x].liveLink.trim();
+			liveDeepLink=data[x].liveDeepLink.trim();
+			
+		  if((parseInt(data[x].date.trim(),10)==theDate&&parseInt(data[x].month.trim(),10)==theMonth)||(parseInt(data[x].month.trim(),10)==theMonth&&parseInt(data[x].date.trim(),10)>theDate)||(parseInt(data[x].month.trim(),10)>theMonth)||endTimeDate==theDate&&endTimeMonth==theMonth){	 
+		 	
+			games.push(new game( data[x].month.trim(), data[x].date.trim(), startTime, endTime, startTimeParts[0], startTimeParts[1],  data[x].teamOne.trim(), data[x].teamTwo.trim(), data[x].network.trim(),data[x].deportes.trim(),liveLink, liveDeepLink )); 
 		  }
 	  
 	 }
@@ -126,63 +107,68 @@ $.ajax({
 		});
  },
   error: function() {
+	   
   },
-  complete: function() {
+  complete: function(data) {
+	
+        
     	changeMessage(bannerSize);
-		
+
   }
 });
 
 
-
 function getTimeStamp(date, month, hours, minutes) {
        
-    var dateNew= new Date( ((month ) + '/' + date + '/' + 2016 + " " + hours + ':'
+    var dateNew= new Date( ((month ) + '/' + date + '/' + 2017 + " " + hours + ':'
                      + minutes + ':' + 0));
 		
 			 
 	var utcTime = dateNew.getTime() - (now.getTimezoneOffset() * 60000);
-	var gameTimestamp=new Date(utcTime + (3600000*offset));
-	return gameTimestamp.getTime();
+	var showTimestamp=new Date(utcTime + (3600000*offset));
+	return showTimestamp.getTime();
     
 	
 		
 }
 
+function getTimeStampTomorrow(date, month, hours, minutes) {
+       
+    var dateNew= new Date( ((month ) + '/' + date + '/' + 2017 + " " + hours + ':'
+                     + minutes + ':' + 0));
+		
+	dateNew.setDate(dateNew.getDate() + 1)		 
+	var utcTime = dateNew.getTime() - (now.getTimezoneOffset() * 60000);
+	var showTimestamp=new Date(utcTime + (3600000*offset));
+	return showTimestamp.getTime();
+		
+}
 
-function game(teamOne, teamTwo, month, date, startTime, endTime, startTimeHours, startTimeMinutes, rivalryWeek, liveLink, liveDeepLink, network) {
-    this.teamOne = teamOne;
-    this.teamTwo = teamTwo;
-	this.month=month;
+
+function game( month, date, startTime, endTime, startTimeHours, startTimeMinutes,   teamOne, teamTwo, network, deportes,liveLink, liveDeepLink  ) {
+    this.month=month;
 	this.day=date;
 	this.startTime = startTime;
 	this.endTime = endTime;
 	this.startTimeHours = startTimeHours;
 	this.startTimeMinutes = startTimeMinutes;
-	this.rivalryWeek = rivalryWeek;
+	
 	this.liveLink = liveLink;
 	this.liveDeepLink = liveDeepLink;
-	this.network= network.toUpperCase();
+
+	this.teamOne=teamOne;
+	this.teamTwo=teamTwo;
+	this.network=network;
+	this.deportes=deportes;
+}
+
+
+function changeMessage(bannerSize){
   
-}
-
-function searchforFoxOnly( obj ){
-	var foxCount=0;
-	
-	for (x in obj) {
-		 if (obj[x].network=="FOX"||obj[x].network=="FS1")
-		  foxCount++;
-	}
-	return foxCount;
-
-}
-
-function changeMessage(size){
-	var numFoxGames=0;
 	var dateToPromote=gamesSorted[0].day;
 	var monthToPromote=gamesSorted[0].month;
-  if(nowTimestamp<=gamesSorted[0].endTime){
-	   gamesSortedToPromote.push(new game(gamesSorted[0].teamOne, gamesSorted[0].teamTwo, gamesSorted[0].month, gamesSorted[0].day, gamesSorted[0].startTime, gamesSorted[0].endTime,gamesSorted[0].startTimeHours, gamesSorted[0].startTimeMinutes, gamesSorted[0].rivalryWeek,gamesSorted[0].liveLink, gamesSorted[0].liveDeepLink, gamesSorted[0].network))
+	 if(nowTimestamp<=gamesSorted[0].endTime){
+	   gamesSortedToPromote.push(new game(gamesSorted[0].month, gamesSorted[0].day, gamesSorted[0].startTime, gamesSorted[0].endTime,gamesSorted[0].startTimeHours, gamesSorted[0].startTimeMinutes, gamesSorted[0].teamOne, gamesSorted[0].teamTwo, gamesSorted[0].network,gamesSorted[0].deportes, gamesSorted[0].liveLink, gamesSorted[0].liveDeepLink))
 	}
 	
 	var i=dateToPromote;
@@ -191,23 +177,17 @@ function changeMessage(size){
 			i=gamesSorted[k].day;
 			j=gamesSorted[k].month;
 		 	if((i==dateToPromote&&j==monthToPromote)&&nowTimestamp<=gamesSorted[k].endTime){
-				gamesSortedToPromote.push(new game(gamesSorted[k].teamOne, gamesSorted[k].teamTwo, gamesSorted[k].month, gamesSorted[k].day, gamesSorted[k].startTime, gamesSorted[k].endTime,gamesSorted[k].startTimeHours, gamesSorted[k].startTimeMinutes,gamesSorted[k].rivalryWeek,gamesSorted[k].liveLink, gamesSorted[k].liveDeepLink,gamesSorted[k].network)) 
+				gamesSortedToPromote.push(new game(gamesSorted[k].month, gamesSorted[k].day, gamesSorted[k].startTime, gamesSorted[k].endTime,gamesSorted[k].startTimeHours, gamesSorted[k].startTimeMinutes,gamesSorted[k].teamOne, gamesSorted[k].teamTwo,gamesSorted[k].network,gamesSorted[0].deportes,gamesSorted[k].liveLink, gamesSorted[k].liveDeepLink )) 
+				
 			}
 			else if((i==dateToPromote&&j==monthToPromote)&&nowTimestamp>=gamesSorted[k].endTime){
 				//do nothing
 			}
 			else{
-				
-				numFoxGames=searchforFoxOnly(gamesSortedToPromote);
-				if(gamesSortedToPromote.length==0||(numFoxGames==Object.keys(gamesSortedToPromote).length&&numFoxGames>=1)){
+				if(gamesSortedToPromote.length==0){
 					dateToPromote=gamesSorted[k].day;
 					monthToPromote=gamesSorted[k].month;
-					while(numFoxGames>0){
-						gamesSortedToPromote.pop();
-						numFoxGames--;
-					}
-					
-					gamesSortedToPromote.push(new game(gamesSorted[k].teamOne, gamesSorted[k].teamTwo, gamesSorted[k].month, gamesSorted[k].day, gamesSorted[k].startTime, gamesSorted[k].endTime,gamesSorted[k].startTimeHours, gamesSorted[k].startTimeMinutes,gamesSorted[k].rivalryWeek,gamesSorted[k].liveLink, gamesSorted[k].liveDeepLink,gamesSorted[k].network)) 
+					gamesSortedToPromote.push(new game( gamesSorted[k].month, gamesSorted[k].day, gamesSorted[k].startTime, gamesSorted[k].endTime,gamesSorted[k].startTimeHours, gamesSorted[k].startTimeMinutes, gamesSorted[k].teamOne, gamesSorted[k].teamTwo,gamesSorted[k].network,gamesSorted[0].deportes,gamesSorted[k].liveLink, gamesSorted[k].liveDeepLink )) 
 				}
 				else break;
 				
@@ -215,238 +195,164 @@ function changeMessage(size){
 			
 		}
 	
-	var diffDays = Math.round(Math.abs((gamesSortedToPromote[0].startTime - nowTimestamp)/(oneDay)));
-	var dayOfWeekLong = new Date((gamesSortedToPromote[0].startTime));
+		var diffDays = Math.round(Math.abs((gamesSortedToPromote[0].startTime - nowTimestamp)/(oneDay)));
+	var showDay=dayOfWeekLong= new Date((gamesSortedToPromote[0].startTime));
 	
+	showDay=showDay.getDay();
 	var dayOfWeekShort=dayOfWeekLong;
 	dayOfWeekLong=weekday[dayOfWeekLong.getDay()].full;
 	dayOfWeekShort=weekday[dayOfWeekShort.getDay()].short;
-	if(diffDays==0){
-		if(nowTimestamp>=gamesSortedToPromote[0].startTime){
-			
-			tuneInMessage="Live Now";
-			
-		}
-	
-		else{
-			 tuneInMessage="Today";
-		}
-	
-	}
-	else if(diffDays==1){
-				tuneInMessage="Tomorrow";	
-	}
-	else if(diffDays>1&&diffDays<=6){
-			tuneInMessage=dayOfWeekLong;	
-	}
-	else if(diffDays>=7&&diffDays<14){
-			tuneInMessage="Next "+dayOfWeekShort;	
-	}
-	else if(diffDays>=14){
-			tuneInMessage=months[parseInt(gamesSortedToPromote[0].month,10)	].month+" "+gamesSortedToPromote[0].day;
-	}
-	
-	if(Object.keys(gamesSortedToPromote).length==1){
-		if(size=="1280x100"||size=="970x66")
-		$( "#tuneInMessage" ).addClass( "tuneInMessageLarge" );
-		else $( "#tuneInMessage" ).addClass( "tuneInMessage" );	
 		
-	}
-	else{
-		$( "#tuneInMessage" ).addClass( "tuneInMessage" );	
-	}
-	
-	if(dayOfWeekLong=="Sunday"){
-		$( "#soccerLogo" ).addClass( "soccerLogoSunday" );
-		$( "#leftDiagonal" ).addClass( "leftDiagonal" );
-		$( "#topDiagonal" ).addClass( "topDiagonal" );
-	}
-	else{
-		$( "#soccerLogo" ).addClass( "soccerLogoOnly" );
-		$( "#leftDiagonal" ).addClass( "leftDiagonalSaturday" );
-		$( "#topDiagonal" ).addClass( "topDiagonalSaturday" );
-		if(size=="1280x100"){
-			$("#colCenter").css("left","170px");
-		}
-		if(size=="970x66"){
-			$("#colCenter").css("left","135px");	
-		}
-		if(size=="300x250"&&Object.keys(gamesSortedToPromote).length==1){
-			$( "#tuneInMessage" ).css( "top","98px" );
-			$( "#soccerLogo" ).css("margin-top","10px");
-		}
-		
-	}
-	if(gamesSortedToPromote[0].rivalryWeek=="true"){
-		rivalryWeek=1;
-		if(size!="320x50"){
-		$( "#soccerLogo" ).addClass( "soccerLogoRivalry" );	
-		}
-	}
-	$("#tuneInMessage").html(tuneInMessage);
-	
-	for(var a=0; a<Object.keys(gamesSortedToPromote).length;a++){
-		var timeOfDay="PM/ET";
-		var networkSize;
-	    if(bannerSize=="320x50"){
-					gamesSortedToPromote[a].teamOne=teamAbbreviations[gamesSortedToPromote[a].teamOne].abbrev;
-					gamesSortedToPromote[a].teamTwo=teamAbbreviations[gamesSortedToPromote[a].teamTwo].abbrev;
-					
-		}
-		if(gamesSortedToPromote[a].startTimeHours<12) timeOfDay="AM/ET";
-		if(gamesSortedToPromote[a].startTimeMinutes=="0"||gamesSortedToPromote[a].startTimeMinutes=="00") gamesSortedToPromote[a].startTimeMinutes="";
-		else gamesSortedToPromote[a].startTimeMinutes=":"+gamesSortedToPromote[a].startTimeMinutes;
-		if(Object.keys(gamesSortedToPromote).length>1) {networkSize="size"+size+"Small"} else  networkSize="size"+size+"Large"
-		if(gamesSortedToPromote[a].startTimeHours>12) gamesSortedToPromote[a].startTimeHours=gamesSortedToPromote[a].startTimeHours-12;
-		if(nowTimestamp>=gamesSortedToPromote[a].startTime){
-			if(gamesSortedToPromote[a].network=="ESPN"||gamesSortedToPromote[a].network=="ESPN2"){
-				 showLive=true;
-				 var clickThrough=gamesSortedToPromote[a].liveLink;
-				$('#socWrap').unbind( "click", defaultClick )
-				$('#socWrap').bind("click",function(event){
-					  	setClickThrough(adMacro+clickThrough,a);
-					});
+		if(diffDays==0){
+			
+			if(nowTimestamp>=gamesSortedToPromote[0].startTime){
 				
-			}
-		}
-		if(Object.keys(gamesSortedToPromote).length>2){
-			ctaDelay=3.6;
-			if(bannerSize=="300x250"){
-					gamesSortedToPromote[a].teamOne=teamAbbreviations[gamesSortedToPromote[a].teamOne].abbrev;
-					gamesSortedToPromote[a].teamTwo=teamAbbreviations[gamesSortedToPromote[a].teamTwo].abbrev;
-					
-			}
-			
-			if(nowTimestamp>=gamesSortedToPromote[a].startTime){
-				if(bannerSize=="1280x100"||bannerSize=="970x66"){
-				$("#scheduleMessage").append("<div class='table2'>"+gamesSortedToPromote[a].teamOne+" <div class='vs' style='margin-top:-1px'>vs</div>"+gamesSortedToPromote[a].teamTwo+" <div id='tuneInTime'><span class='time'>LIVE</span>&nbsp;"+networks[gamesSortedToPromote[a].network][networkSize]+"</div></div>");
-				}
-				if(bannerSize=="728x90"||bannerSize=="320x50"){
-				$("#scheduleMessage").append("<div class='table1' style='line-height:1.4em'>"+gamesSortedToPromote[a].teamOne+" <span class='vs'>vs</span> "+gamesSortedToPromote[a].teamTwo+"<span class='time'>&nbsp;LIVE</span>&nbsp;&nbsp;"+networks[gamesSortedToPromote[a].network][networkSize]+"</div>");
-				}
-				if(bannerSize=="300x250"){
-					$("#scheduleMessage").append("<div class='table2'>"+gamesSortedToPromote[a].teamOne+" <span class='vs' >vs</span> "+gamesSortedToPromote[a].teamTwo+" <span class='time' style='display:table-cell;padding:5px;text-align:right'>LIVE</span></span>&nbsp;"+networks[gamesSortedToPromote[a].network][networkSize]+"</div>");
-				}
-					
-			}
-			else{
-				if(bannerSize=="1280x100"||bannerSize=="970x66"){
-				$("#scheduleMessage").append("<div class='table2'>"+gamesSortedToPromote[a].teamOne+" <div class='vs' style='margin-top:-1px'>vs</div>"+gamesSortedToPromote[a].teamTwo+" <div id='tuneInTime'><span class='time'>"+gamesSortedToPromote[a].startTimeHours+gamesSortedToPromote[a].startTimeMinutes+"<span class='timeZone'>"+timeOfDay+"</span></span>&nbsp;"+networks[gamesSortedToPromote[a].network][networkSize]+"</div></div>");
-				}
-				if(bannerSize=="728x90"||bannerSize=="320x50"){
-					if(bannerSize=="728x90"){
-						$('.table1').css("line-height","1.4em");		
+					showScheduleMessage="";
+					if(gamesSortedToPromote[0].startTimeHours>=18){
+						introText="Tonight";	
 					}
-					$("#scheduleMessage").append("<div class='table1' >"+gamesSortedToPromote[a].teamOne+" <span class='vs'>vs</span> "+gamesSortedToPromote[a].teamTwo+"<span class='time'>&nbsp;"+gamesSortedToPromote[a].startTimeHours+gamesSortedToPromote[a].startTimeMinutes+"<span class='timeZone'>"+timeOfDay+"</span></span>&nbsp;&nbsp;"+networks[gamesSortedToPromote[a].network][networkSize]+"</div>");
+					else introText="Today";
+					showLive=true;
 					
-				}
-				if(bannerSize=="300x250"){
-					
-					$("#scheduleMessage").append("<div class='table2'>"+gamesSortedToPromote[a].teamOne+" <span class='vs' >vs</span> "+gamesSortedToPromote[a].teamTwo+" <span class='time' style='display:table-cell;padding:5px;text-align:right'>&nbsp;&nbsp;"+gamesSortedToPromote[a].startTimeHours+gamesSortedToPromote[a].startTimeMinutes+"<span class='timeZone2'>"+timeOfDay+"</span></span>&nbsp;"+networks[gamesSortedToPromote[a].network][networkSize]+"</div>");
-				}
 			}
-			if(bannerSize=="1280x100"){
-				$("#scheduleMessage").css("fontSize","1.2em");
-				$('.time').css("font-size","20px");	
-			}
-			if(bannerSize=="300x250"){
-				$('.espnLogo,.espn2Logo,.fs1Logo').css("height","14px");
-				$('.espnLogo,#espn2Logo').css("vertical-align","-8%");
-				$('.fs1Logo').css("vertical-align","-10%");
-				$('.time').css("font-size","16px");	
-				$("#scheduleMessage").css({
-    						  "font-size": "0.9em",
-     					  	  "top": "118px",
-	  						  "width":"auto"});
-	  		}
-			if(bannerSize=="970x66"){
-				$("#scheduleMessage").css("fontSize","0.9em");	
-				$(".timeZone").css("fontSize","10px");	
-				$('.espnLogo,.espn2Logo,.fs1Logo').css("height","12px");
-				$('.foxLogo').css("height","14px");
-				$('.espnLogo,.espn2Logo').css("vertical-align","-6%");
-				$('.fs1Logo,.foxLogo').css("vertical-align","-8%");
+			else{
+				if(showDay==theDay){
+					if(gamesSortedToPromote[0].startTimeHours>=18){
+						showScheduleMessage=introText="Tonight";	
+					}
+					else showScheduleMessage=introText="Today";
+				}
+				else showScheduleMessage=introText="Tomorrow";	
 			}
 			
 		}
-		if(Object.keys(gamesSortedToPromote).length==2){
-			ctaDelay=3.3;
-			if(nowTimestamp>=gamesSortedToPromote[a].startTime){
-				if(bannerSize!="300x250"){
-				$("#scheduleMessage").append("<div class='table1' style='line-height:1.4em'>"+gamesSortedToPromote[a].teamOne+" <span class='vs'>vs</span> "+gamesSortedToPromote[a].teamTwo+"<span class='time'>&nbsp;LIVE</span>&nbsp;&nbsp;"+networks[gamesSortedToPromote[a].network][networkSize]+"</div>");
-				}
-				else{
-					$("#scheduleMessage").append("<div class='table1' >"+gamesSortedToPromote[a].teamOne+" <span class='vs'>vs</span> "+gamesSortedToPromote[a].teamTwo+"<br/><span class='time'>&nbsp;LIVE</span>&nbsp;&nbsp;"+networks[gamesSortedToPromote[a].network][networkSize]+"</div>");
-				}
-			}
+		else if(diffDays>0&&diffDays<=1){
+			if(theDay!=showDay)
+				showScheduleMessage=introText="Tomorrow";	
 			else{
-				if(bannerSize!="300x250"){
-					$("#scheduleMessage").append("<div class='table1' style='line-height:1.4em'>"+gamesSortedToPromote[a].teamOne+" <span class='vs'>vs</span> "+gamesSortedToPromote[a].teamTwo+"<span class='time'>&nbsp;"+gamesSortedToPromote[a].startTimeHours+gamesSortedToPromote[a].startTimeMinutes+"<span class='timeZone'>"+timeOfDay+"</span></span>&nbsp;&nbsp;"+networks[gamesSortedToPromote[a].network][networkSize]+"</div>");
+				if(gamesSortedToPromote[0].startTimeHours>=18){
+					showScheduleMessage=introText="Tonight";	
 				}
-				else{
-						$("#scheduleMessage").append("<div class='table1' >"+gamesSortedToPromote[a].teamOne+" <span class='vs'>vs</span> "+gamesSortedToPromote[a].teamTwo+"<br/><span class='time'>&nbsp;"+gamesSortedToPromote[a].startTimeHours+gamesSortedToPromote[a].startTimeMinutes+"<span class='timeZone'>"+timeOfDay+"</span></span>&nbsp;&nbsp;"+networks[gamesSortedToPromote[a].network][networkSize]+"</div>");
-						
-				}
-			}
-			
-			
-		}
-		if(Object.keys(gamesSortedToPromote).length==1){
-			ctaDelay=3;
-			if(size=="1280x100"){
-				$(".vs").css("font-size","20px");	
-			}
-			if(nowTimestamp>=gamesSortedToPromote[a].startTime){
-				$("#scheduleMessage").append("<div class='table1'>"+gamesSortedToPromote[a].teamOne+" <span class='vs' >vs</span> "+gamesSortedToPromote[a].teamTwo+"<br/> <span class='time'>LIVE</span>&nbsp;"+networks[gamesSortedToPromote[a].network][networkSize]+"</div>");
-				
-			}
-			else{
-				
-				$("#scheduleMessage").append("<div class='table1'>"+gamesSortedToPromote[a].teamOne+" <span class='vs' >vs</span> "+gamesSortedToPromote[a].teamTwo+"<br/> <span class='time'>"+gamesSortedToPromote[a].startTimeHours+gamesSortedToPromote[a].startTimeMinutes+"<span class='timeZone1'>"+timeOfDay+"</span></span>&nbsp;"+networks[gamesSortedToPromote[a].network][networkSize]+"</div>");
-				
-				
-			}
-			if(bannerSize=="1280x100"){
-				$("#scheduleMessage").css("fontSize","1.7em");
-				$('.time').css("font-size","1.1em");	
-			}
-			if(bannerSize=="970x66"){
-				$("#scheduleMessage").css("fontSize","1.3em");
-				$('.time').css("font-size","0.9em");	
-			}
-			if(bannerSize=="728x90"){
-				$("#scheduleMessage").css("fontSize","1.4em");
-				$('.time').css("font-size","1em");	
-			}
-			if(bannerSize=="300x250"){
-				$("#scheduleMessage").css({"font-size":"1.2em","top":"35px"});
-				$("#ctaBtn").css("top","205px");
+				else showScheduleMessage=introText="Today";
 					
 			}
-			if(bannerSize=="320x50"){
-					$("#scheduleMessage").css("fontSize","1em");
-					$('#colCenter').css("left","50px");	
-					$('.table1').css("text-align","center");	
-									
+			
+		}
+		else if(diffDays>1&&diffDays<7){
+				if((theDay==showDay-1)||(theDay==6&&showDay==0))
+					showScheduleMessage=introText="Tomorrow";	
+				else{
+					
+					showScheduleMessage=dayOfWeekLong;	
+					if(bannerSize!="300x250"&&bannerSize!="320x120") introText="This "+dayOfWeekLong;
+					else introText="This<br/>"+dayOfWeekLong;
+				}
+		}
+		else if(diffDays>=7){
+			showScheduleMessage=introText=dayOfWeekLong+" "+months[parseInt(gamesSortedToPromote[0].month,10)	].month+" "+parseInt(gamesSortedToPromote[0].day,10);
+			if(bannerSize=="300x250"||bannerSize=="320x120") {
+				introText=dayOfWeekLong+"<br/>"+months[parseInt(gamesSortedToPromote[0].month,10)	].month+" "+parseInt(gamesSortedToPromote[0].day,10);
 			}
+			else{
+				showScheduleMessage=dayOfWeekShort+" "+months[parseInt(gamesSortedToPromote[0].month,10)	].month+" "+parseInt(gamesSortedToPromote[0].day,10);
+			}
+		}
+		console.log(diffDays);
+		$("#text1").html(introText);
+		if(dayOfWeekLong=="Sunday")
+			$("#mlsLogo").addClass("soccerLogoSunday");
+		else{
+			$("#mlsLogo").addClass("soccerLogoOnly");	
+		}
+		if(gamesSortedToPromote[0].network=="ESPN") 
+			$("#networks").addClass("espnWatchLogos");
+		else{
+			$("#networks").addClass("espn2WatchLogos");
+		}
+		if(gamesSortedToPromote[0].deportes=="yes") 
+			$("#deportes").css("display","inline-block");
+		
+		$("#team1Bkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+bannerSize+"_"+teamNames[gamesSortedToPromote[0].teamOne].abbrev+"_diagonal.png' height='"+imgSizes[bannerSize].teamDiagonalSize+"' />");
+		$("#team1LogoBkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoBigSize+"_"+teamNames[gamesSortedToPromote[0].teamOne].abbrev+"_bigLogo.jpg' height='"+imgSizes[bannerSize].teamLogoBigSize+"' />");
+		if(imgSizes[bannerSize].logoBigSize=="300x250")
+			$("#team1LogoBkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoBigSize+"_"+teamNames[gamesSortedToPromote[0].teamOne].abbrev+"_bigLogo.png' height='"+imgSizes[bannerSize].teamLogoBigSize+"' />");
+		
+		$("#team1LogoSmall").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoSmallSize+"_"+teamNames[gamesSortedToPromote[0].teamOne].abbrev+"_smallLogo.png' height='"+imgSizes[bannerSize].teamLogoSmallSize+"' />");
+		$("#team1Name").html(teamNames[gamesSortedToPromote[0].teamOne].long);
+		if(bannerSize=="300x250"||bannerSize=="728x90"||bannerSize=="320x120") $("#team1Name").html(gamesSortedToPromote[0].teamOne);
+		$("#team2Bkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+bannerSize+"_"+teamNames[gamesSortedToPromote[0].teamTwo].abbrev+"_diagonal.png' height='"+imgSizes[bannerSize].teamDiagonalSize+"' />");
+		if(bannerSize=="320x50") $("#team1Name").html(teamNames[gamesSortedToPromote[0].teamOne].abbrev);
+		$("#team2LogoBkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoBigSize+"_"+teamNames[gamesSortedToPromote[0].teamTwo].abbrev+"_bigLogo.jpg' height='"+imgSizes[bannerSize].teamLogoBigSize+"' />");
+		if(imgSizes[bannerSize].logoBigSize=="300x250")
+			$("#team2LogoBkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoBigSize+"_"+teamNames[gamesSortedToPromote[0].teamTwo].abbrev+"_bigLogo.png' height='"+imgSizes[bannerSize].teamLogoBigSize+"' />");
+		$("#team2LogoSmall").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoSmallSize+"_"+teamNames[gamesSortedToPromote[0].teamTwo].abbrev+"_smallLogo.png' height='"+imgSizes[bannerSize].teamLogoSmallSize+"' />");
+		$("#team2Name").html(teamNames[gamesSortedToPromote[0].teamTwo].long);
+		if(bannerSize=="300x250"||bannerSize=="728x90"||bannerSize=="320x120") $("#team2Name").html(gamesSortedToPromote[0].teamTwo);
+		if(bannerSize=="320x50") $("#team2Name").html(teamNames[gamesSortedToPromote[0].teamTwo].abbrev);
+		var timeOfDay="PM/ET";
+		
+		if(gamesSortedToPromote[0].startTimeHours<12) timeOfDay="AM/ET";
+		if(gamesSortedToPromote[0].startTimeMinutes!="00"){
+			gamesSortedToPromote[0].startTimeMinutes=":"+gamesSortedToPromote[0].startTimeMinutes;
+		}
+		else{
+			 gamesSortedToPromote[0].startTimeMinutes="";
+			 
 		}
 	
-	}
-	if(tuneInMessage=="Live Now"&&showLive==true){
-		$( "#ctaBtn" ).addClass( "ctaLiveBtn" );
 		
-	}
-	else{
-		$( "#ctaBtn" ).addClass( "ctaScheduleBtn" );
-	}
-	window.setTimeout(function(){animate();}, 100);
+		if(gamesSortedToPromote[0].startTimeHours>12) gamesSortedToPromote[0].startTimeHours=gamesSortedToPromote[0].startTimeHours-12;
+		if(showLive==true){
+			 $("#liveCTA").css("display","block");
+			 if(bannerSize=="970x66"||bannerSize=="1024x66"){
+					$("#tuneIn").css("margin","0px");
+					 $("#networksDiv").css("margin-top","-4px"); 
+			 }
+			 if(bannerSize=="300x250"){
+				 $("#networksDiv").css("margin-top","-2px"); 
+			}
+			if(bannerSize=="320x120"){
+				 $("#networksDiv").css("margin-top","-7px"); 
+			}
+			 if(bannerSize=="1280x100"||bannerSize=="320x50"||bannerSize=="728x90"){
+					
+					 $("#networksDiv").css("margin-top","0px"); 
+			 }
+			 var clickThrough=gamesSortedToPromote[0].liveLink;
+					$('#socWrap').unbind( "click", defaultClick )
+					$('#socWrap').bind("click",function(event){
+							setClickThrough(adMacro+clickThrough);
+						});
+		}
+		
+		
+		else if((gamesSortedToPromote[0].startTimeHours=="12"||gamesSortedToPromote[0].startTimeHours=="00")&&gamesSortedToPromote[0].startTimeMinutes==""){
+					
+					if(gamesSortedToPromote[0].startTimeHours=="12") {
+							$("#showScheduleMessage").html(showScheduleMessage+" <span class='time'>Noon</span>");	
+					}
+					else{
+						if(showScheduleMessage==dayOfWeekLong) showScheduleMessage=dayOfWeekShort;
+							$("#time")=" <span class='time'>Midnight</span>";	
+						
+						 $("#showScheduleMessage").html(showScheduleMessage+" <span class='time'>Midnight</span>");	
+					}
+		}
+		else{	$("#showScheduleMessage").html(showScheduleMessage+" <span class='time'>"+gamesSortedToPromote[0].startTimeHours+gamesSortedToPromote[0].startTimeMinutes+"<span class='timeZone'>"+timeOfDay+"</span></span>");
+					
+		}
+		
+	 window.setTimeout( function(){animate();},200);
+			
+	  
+
 }
 	
 			
-	function setClickThrough(url,num){
+	function setClickThrough(url){
 		if((navigator.userAgent.toLowerCase().indexOf('iphone') > -1 || navigator.userAgent.toLowerCase().indexOf('ipad') > -1 || navigator.userAgent.toLowerCase().indexOf('ipod') ) && typeof mraid !== 'undefined'  ){
 			if (showLive==true){
-				url=gamesSortedToPromote[num].liveDeepLink;
+				url=gamesSortedToPromote[0].liveDeepLink;
 			}
 		}
 		if(typeof window.parent.app === 'object'){
@@ -473,19 +379,21 @@ function changeMessage(size){
 		}
 				
 	}
+	
 	function defaultClick(){
-		setClickThrough(adMacro+"http://bit.ly/1DYsiff",0);
+		setClickThrough(adMacro+defaultLink);
 			
 	}
 		
-	function init(size, macro, adID, cacheBuster) {
+	function init(macro, adID, cacheBuster) {
+		 
 			if(adID) dfpAdID=adID;
-			bannerSize=size;
+			
 			if(cacheBuster) cacheBust=cacheBuster;
 			if(macro) adMacro=macro;
 			if(adMacro=="%%CLICK_URL_UNESC%%") adMacro="";
-	         $('#socWrap').bind("click",defaultClick);
-
-			
+		  
+	         $('#socWrap').bind("click",defaultClick);			
+	  		
       }
 	  
