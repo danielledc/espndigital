@@ -1,4 +1,4 @@
-As a Creative Works Developer at ESPN from 2015-2018, I lead HTML5 development of interactive digital banners promoting ESPN programming and sporting events appearing across ESPN networks.
+As a Creative Works Developer at ESPN from 2015-2018, I led HTML5 development of interactive digital banners promoting ESPN programming and sporting events appearing across ESPN networks.
 
 These banners used the GreenSock Animation Platform (GSAP) TweenMax library for animation 
 effects: http://greensock.com/docs/#/HTML5/GSAP/TweenMax/.
