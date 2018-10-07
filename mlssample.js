@@ -56,7 +56,7 @@ var imgSizes={
 			"320x120":{logoBigSize:"300x250", logoSmallSize:"970x66", teamDiagonalSize:"120",teamLogoBigSize:"360", teamLogoSmallSize:"50"}
 }
 			
-var dfpAdID, cacheBust, adMacro,  offset=5.0, ctaDelay, showLive=false, num=0, showScheduleMessage, introText,   games=[], gamesSorted=[], gamesSortedToPromote=[];
+var dfpAdID, cacheBust, adMacro,  offset=5.0, ctaDelay, showLive=false, num=0, showScheduleMessage, introText,   games=[];
 
 
 var defaultLink="http://www.espnfc.us/major-league-soccer/19/index";
@@ -76,7 +76,7 @@ if(nowTimestamp>=1489298400000){
 	}
 
 $.ajax({
-  url: "https://secure.espncdn.com/i/dynbanners/mls/2017/Season/js/games.json",
+  url: "js/games.json",
   success: function(data) {
 	 for(var x in data){
 		 	var endTimeDate, endTimeMonth,  teamOne="", teamTwo="";
@@ -95,14 +95,14 @@ $.ajax({
 			liveLink=data[x].liveLink.trim();
 			liveDeepLink=data[x].liveDeepLink.trim();
 			
-		  if((parseInt(data[x].date.trim(),10)==theDate&&parseInt(data[x].month.trim(),10)==theMonth)||(parseInt(data[x].month.trim(),10)==theMonth&&parseInt(data[x].date.trim(),10)>theDate)||(parseInt(data[x].month.trim(),10)>theMonth)||endTimeDate==theDate&&endTimeMonth==theMonth){	 
+		  if(nowTimestamp<endTime){	 
 		 	
 			games.push(new game( data[x].month.trim(), data[x].date.trim(), startTime, endTime, startTimeParts[0], startTimeParts[1],  data[x].teamOne.trim(), data[x].teamTwo.trim(), data[x].network.trim(),data[x].deportes.trim(),liveLink, liveDeepLink )); 
 		  }
 	  
 	 }
-	 gamesSorted = games.slice(0);
-	 gamesSorted.sort(function(a,b) {
+	 
+	 games=games.sort(function(a,b) {
 			return a.startTime - b.startTime;
 		});
  },
@@ -120,7 +120,7 @@ $.ajax({
 
 function getTimeStamp(date, month, hours, minutes) {
        
-    var dateNew= new Date( ((month ) + '/' + date + '/' + 2017 + " " + hours + ':'
+    var dateNew= new Date( ((month ) + '/' + date + '/' + 2018 + " " + hours + ':'
                      + minutes + ':' + 0));
 		
 			 
@@ -134,7 +134,7 @@ function getTimeStamp(date, month, hours, minutes) {
 
 function getTimeStampTomorrow(date, month, hours, minutes) {
        
-    var dateNew= new Date( ((month ) + '/' + date + '/' + 2017 + " " + hours + ':'
+    var dateNew= new Date( ((month ) + '/' + date + '/' + 2018 + " " + hours + ':'
                      + minutes + ':' + 0));
 		
 	dateNew.setDate(dateNew.getDate() + 1)		 
@@ -164,39 +164,11 @@ function game( month, date, startTime, endTime, startTimeHours, startTimeMinutes
 
 
 function changeMessage(bannerSize){
+	
+	var gameToPromote=Object.assign({},games[0]);
   
-	var dateToPromote=gamesSorted[0].day;
-	var monthToPromote=gamesSorted[0].month;
-	 if(nowTimestamp<=gamesSorted[0].endTime){
-	   gamesSortedToPromote.push(new game(gamesSorted[0].month, gamesSorted[0].day, gamesSorted[0].startTime, gamesSorted[0].endTime,gamesSorted[0].startTimeHours, gamesSorted[0].startTimeMinutes, gamesSorted[0].teamOne, gamesSorted[0].teamTwo, gamesSorted[0].network,gamesSorted[0].deportes, gamesSorted[0].liveLink, gamesSorted[0].liveDeepLink))
-	}
-	
-	var i=dateToPromote;
-	var j=monthToPromote;
-	for(var	k=1;k<gamesSorted.length;k++){
-			i=gamesSorted[k].day;
-			j=gamesSorted[k].month;
-		 	if((i==dateToPromote&&j==monthToPromote)&&nowTimestamp<=gamesSorted[k].endTime){
-				gamesSortedToPromote.push(new game(gamesSorted[k].month, gamesSorted[k].day, gamesSorted[k].startTime, gamesSorted[k].endTime,gamesSorted[k].startTimeHours, gamesSorted[k].startTimeMinutes,gamesSorted[k].teamOne, gamesSorted[k].teamTwo,gamesSorted[k].network,gamesSorted[0].deportes,gamesSorted[k].liveLink, gamesSorted[k].liveDeepLink )) 
-				
-			}
-			else if((i==dateToPromote&&j==monthToPromote)&&nowTimestamp>=gamesSorted[k].endTime){
-				//do nothing
-			}
-			else{
-				if(gamesSortedToPromote.length==0){
-					dateToPromote=gamesSorted[k].day;
-					monthToPromote=gamesSorted[k].month;
-					gamesSortedToPromote.push(new game( gamesSorted[k].month, gamesSorted[k].day, gamesSorted[k].startTime, gamesSorted[k].endTime,gamesSorted[k].startTimeHours, gamesSorted[k].startTimeMinutes, gamesSorted[k].teamOne, gamesSorted[k].teamTwo,gamesSorted[k].network,gamesSorted[0].deportes,gamesSorted[k].liveLink, gamesSorted[k].liveDeepLink )) 
-				}
-				else break;
-				
-			}
-			
-		}
-	
-		var diffDays = Math.round(Math.abs((gamesSortedToPromote[0].startTime - nowTimestamp)/(oneDay)));
-	var showDay=dayOfWeekLong= new Date((gamesSortedToPromote[0].startTime));
+	var diffDays = Math.round(Math.abs((gameToPromote.startTime - nowTimestamp)/(oneDay)));
+	var showDay=dayOfWeekLong= new Date((gameToPromote.startTime));
 	
 	showDay=showDay.getDay();
 	var dayOfWeekShort=dayOfWeekLong;
@@ -205,10 +177,10 @@ function changeMessage(bannerSize){
 		
 		if(diffDays==0){
 			
-			if(nowTimestamp>=gamesSortedToPromote[0].startTime){
+			if(nowTimestamp>=gameToPromote.startTime){
 				
 					showScheduleMessage="";
-					if(gamesSortedToPromote[0].startTimeHours>=18){
+					if(gameToPromote.startTimeHours>=18){
 						introText="Tonight";	
 					}
 					else introText="Today";
@@ -217,7 +189,7 @@ function changeMessage(bannerSize){
 			}
 			else{
 				if(showDay==theDay){
-					if(gamesSortedToPromote[0].startTimeHours>=18){
+					if(gameToPromote.startTimeHours>=18){
 						showScheduleMessage=introText="Tonight";	
 					}
 					else showScheduleMessage=introText="Today";
@@ -230,7 +202,7 @@ function changeMessage(bannerSize){
 			if(theDay!=showDay)
 				showScheduleMessage=introText="Tomorrow";	
 			else{
-				if(gamesSortedToPromote[0].startTimeHours>=18){
+				if(gameToPromote.startTimeHours>=18){
 					showScheduleMessage=introText="Tonight";	
 				}
 				else showScheduleMessage=introText="Today";
@@ -249,59 +221,59 @@ function changeMessage(bannerSize){
 				}
 		}
 		else if(diffDays>=7){
-			showScheduleMessage=introText=dayOfWeekLong+" "+months[parseInt(gamesSortedToPromote[0].month,10)	].month+" "+parseInt(gamesSortedToPromote[0].day,10);
+			showScheduleMessage=introText=dayOfWeekLong+" "+months[parseInt(gameToPromote.month,10)	].month+" "+parseInt(gameToPromote.day,10);
 			if(bannerSize=="300x250"||bannerSize=="320x120") {
-				introText=dayOfWeekLong+"<br/>"+months[parseInt(gamesSortedToPromote[0].month,10)	].month+" "+parseInt(gamesSortedToPromote[0].day,10);
+				introText=dayOfWeekLong+"<br/>"+months[parseInt(gameToPromote.month,10)	].month+" "+parseInt(gameToPromote.day,10);
 			}
 			else{
-				showScheduleMessage=dayOfWeekShort+" "+months[parseInt(gamesSortedToPromote[0].month,10)	].month+" "+parseInt(gamesSortedToPromote[0].day,10);
+				showScheduleMessage=dayOfWeekShort+" "+months[parseInt(gameToPromote.month,10)	].month+" "+parseInt(gameToPromote.day,10);
 			}
 		}
-		console.log(diffDays);
+		
 		$("#text1").html(introText);
 		if(dayOfWeekLong=="Sunday")
 			$("#mlsLogo").addClass("soccerLogoSunday");
 		else{
 			$("#mlsLogo").addClass("soccerLogoOnly");	
 		}
-		if(gamesSortedToPromote[0].network=="ESPN") 
+		if(gameToPromote.network=="ESPN") 
 			$("#networks").addClass("espnWatchLogos");
 		else{
 			$("#networks").addClass("espn2WatchLogos");
 		}
-		if(gamesSortedToPromote[0].deportes=="yes") 
+		if(gameToPromote.deportes=="yes") 
 			$("#deportes").css("display","inline-block");
 		
-		$("#team1Bkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+bannerSize+"_"+teamNames[gamesSortedToPromote[0].teamOne].abbrev+"_diagonal.png' height='"+imgSizes[bannerSize].teamDiagonalSize+"' />");
-		$("#team1LogoBkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoBigSize+"_"+teamNames[gamesSortedToPromote[0].teamOne].abbrev+"_bigLogo.jpg' height='"+imgSizes[bannerSize].teamLogoBigSize+"' />");
+		$("#team1Bkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+bannerSize+"_"+teamNames[gameToPromote.teamOne].abbrev+"_diagonal.png' height='"+imgSizes[bannerSize].teamDiagonalSize+"' />");
+		$("#team1LogoBkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoBigSize+"_"+teamNames[gameToPromote.teamOne].abbrev+"_bigLogo.jpg' height='"+imgSizes[bannerSize].teamLogoBigSize+"' />");
 		if(imgSizes[bannerSize].logoBigSize=="300x250")
-			$("#team1LogoBkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoBigSize+"_"+teamNames[gamesSortedToPromote[0].teamOne].abbrev+"_bigLogo.png' height='"+imgSizes[bannerSize].teamLogoBigSize+"' />");
+			$("#team1LogoBkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoBigSize+"_"+teamNames[gameToPromote.teamOne].abbrev+"_bigLogo.png' height='"+imgSizes[bannerSize].teamLogoBigSize+"' />");
 		
-		$("#team1LogoSmall").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoSmallSize+"_"+teamNames[gamesSortedToPromote[0].teamOne].abbrev+"_smallLogo.png' height='"+imgSizes[bannerSize].teamLogoSmallSize+"' />");
-		$("#team1Name").html(teamNames[gamesSortedToPromote[0].teamOne].long);
-		if(bannerSize=="300x250"||bannerSize=="728x90"||bannerSize=="320x120") $("#team1Name").html(gamesSortedToPromote[0].teamOne);
-		$("#team2Bkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+bannerSize+"_"+teamNames[gamesSortedToPromote[0].teamTwo].abbrev+"_diagonal.png' height='"+imgSizes[bannerSize].teamDiagonalSize+"' />");
-		if(bannerSize=="320x50") $("#team1Name").html(teamNames[gamesSortedToPromote[0].teamOne].abbrev);
-		$("#team2LogoBkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoBigSize+"_"+teamNames[gamesSortedToPromote[0].teamTwo].abbrev+"_bigLogo.jpg' height='"+imgSizes[bannerSize].teamLogoBigSize+"' />");
+		$("#team1LogoSmall").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoSmallSize+"_"+teamNames[gameToPromote.teamOne].abbrev+"_smallLogo.png' height='"+imgSizes[bannerSize].teamLogoSmallSize+"' />");
+		$("#team1Name").html(teamNames[gameToPromote.teamOne].long);
+		if(bannerSize=="300x250"||bannerSize=="728x90"||bannerSize=="320x120") $("#team1Name").html(gameToPromote.teamOne);
+		$("#team2Bkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+bannerSize+"_"+teamNames[gameToPromote.teamTwo].abbrev+"_diagonal.png' height='"+imgSizes[bannerSize].teamDiagonalSize+"' />");
+		if(bannerSize=="320x50") $("#team1Name").html(teamNames[gameToPromote.teamOne].abbrev);
+		$("#team2LogoBkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoBigSize+"_"+teamNames[gameToPromote.teamTwo].abbrev+"_bigLogo.jpg' height='"+imgSizes[bannerSize].teamLogoBigSize+"' />");
 		if(imgSizes[bannerSize].logoBigSize=="300x250")
-			$("#team2LogoBkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoBigSize+"_"+teamNames[gamesSortedToPromote[0].teamTwo].abbrev+"_bigLogo.png' height='"+imgSizes[bannerSize].teamLogoBigSize+"' />");
-		$("#team2LogoSmall").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoSmallSize+"_"+teamNames[gamesSortedToPromote[0].teamTwo].abbrev+"_smallLogo.png' height='"+imgSizes[bannerSize].teamLogoSmallSize+"' />");
-		$("#team2Name").html(teamNames[gamesSortedToPromote[0].teamTwo].long);
-		if(bannerSize=="300x250"||bannerSize=="728x90"||bannerSize=="320x120") $("#team2Name").html(gamesSortedToPromote[0].teamTwo);
-		if(bannerSize=="320x50") $("#team2Name").html(teamNames[gamesSortedToPromote[0].teamTwo].abbrev);
+			$("#team2LogoBkgd").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoBigSize+"_"+teamNames[gameToPromote.teamTwo].abbrev+"_bigLogo.png' height='"+imgSizes[bannerSize].teamLogoBigSize+"' />");
+		$("#team2LogoSmall").html("<img src='https://secure.espncdn.com/i/dynbanners/mls/2017/Season/images/17020014IB1_SOC_"+imgSizes[bannerSize].logoSmallSize+"_"+teamNames[gameToPromote.teamTwo].abbrev+"_smallLogo.png' height='"+imgSizes[bannerSize].teamLogoSmallSize+"' />");
+		$("#team2Name").html(teamNames[gameToPromote.teamTwo].long);
+		if(bannerSize=="300x250"||bannerSize=="728x90"||bannerSize=="320x120") $("#team2Name").html(gameToPromote.teamTwo);
+		if(bannerSize=="320x50") $("#team2Name").html(teamNames[gameToPromote.teamTwo].abbrev);
 		var timeOfDay="PM/ET";
 		
-		if(gamesSortedToPromote[0].startTimeHours<12) timeOfDay="AM/ET";
-		if(gamesSortedToPromote[0].startTimeMinutes!="00"){
-			gamesSortedToPromote[0].startTimeMinutes=":"+gamesSortedToPromote[0].startTimeMinutes;
+		if(gameToPromote.startTimeHours<12) timeOfDay="AM/ET";
+		if(gameToPromote.startTimeMinutes!="00"){
+			gameToPromote.startTimeMinutes=":"+gameToPromote.startTimeMinutes;
 		}
 		else{
-			 gamesSortedToPromote[0].startTimeMinutes="";
+			 gameToPromote.startTimeMinutes="";
 			 
 		}
 	
 		
-		if(gamesSortedToPromote[0].startTimeHours>12) gamesSortedToPromote[0].startTimeHours=gamesSortedToPromote[0].startTimeHours-12;
+		if(gameToPromote.startTimeHours>12) gameToPromote.startTimeHours=gameToPromote.startTimeHours-12;
 		if(showLive==true){
 			 $("#liveCTA").css("display","block");
 			 if(bannerSize=="970x66"||bannerSize=="1024x66"){
@@ -318,7 +290,7 @@ function changeMessage(bannerSize){
 					
 					 $("#networksDiv").css("margin-top","0px"); 
 			 }
-			 var clickThrough=gamesSortedToPromote[0].liveLink;
+			 var clickThrough=gameToPromote.liveLink;
 					$('#socWrap').unbind( "click", defaultClick )
 					$('#socWrap').bind("click",function(event){
 							setClickThrough(adMacro+clickThrough);
@@ -326,9 +298,9 @@ function changeMessage(bannerSize){
 		}
 		
 		
-		else if((gamesSortedToPromote[0].startTimeHours=="12"||gamesSortedToPromote[0].startTimeHours=="00")&&gamesSortedToPromote[0].startTimeMinutes==""){
+		else if((gameToPromote.startTimeHours=="12"||gameToPromote.startTimeHours=="00")&&gameToPromote.startTimeMinutes==""){
 					
-					if(gamesSortedToPromote[0].startTimeHours=="12") {
+					if(gameToPromote.startTimeHours=="12") {
 							$("#showScheduleMessage").html(showScheduleMessage+" <span class='time'>Noon</span>");	
 					}
 					else{
@@ -338,7 +310,7 @@ function changeMessage(bannerSize){
 						 $("#showScheduleMessage").html(showScheduleMessage+" <span class='time'>Midnight</span>");	
 					}
 		}
-		else{	$("#showScheduleMessage").html(showScheduleMessage+" <span class='time'>"+gamesSortedToPromote[0].startTimeHours+gamesSortedToPromote[0].startTimeMinutes+"<span class='timeZone'>"+timeOfDay+"</span></span>");
+		else{	$("#showScheduleMessage").html(showScheduleMessage+" <span class='time'>"+gameToPromote.startTimeHours+gameToPromote.startTimeMinutes+"<span class='timeZone'>"+timeOfDay+"</span></span>");
 					
 		}
 		
@@ -352,7 +324,7 @@ function changeMessage(bannerSize){
 	function setClickThrough(url){
 		if((navigator.userAgent.toLowerCase().indexOf('iphone') > -1 || navigator.userAgent.toLowerCase().indexOf('ipad') > -1 || navigator.userAgent.toLowerCase().indexOf('ipod') ) && typeof mraid !== 'undefined'  ){
 			if (showLive==true){
-				url=gamesSortedToPromote[0].liveDeepLink;
+				url=gameToPromote.liveDeepLink;
 			}
 		}
 		if(typeof window.parent.app === 'object'){
@@ -397,3 +369,4 @@ function changeMessage(bannerSize){
 	  		
       }
 	  
+ 
