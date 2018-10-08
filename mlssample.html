@@ -241,12 +241,14 @@
      <script>var bannerSize="1280x100";</script>
 	<script src="https://secure.espncdn.com/i/dynbanners/mls/2017/Season/js/TweenMax.min.js"></script>
 	<script src="https://secure.espncdn.com/i/dynbanners/mls/2017/Season/js/timeCoding_v9.js"></script>
-   	<script type="text/javascript">
+   	<script type="text/javascript">  
+	//when DOM is ready invoke init function, which passes DFP click macro as a parameter
 	$( document ).ready(function() {
 	
 		init('%%CLICK_URL_UNESC%%');
 	
 	});
+	//animation code, using TweenMax 
 	function animate(){
 	
 		if (dayOfWeekLong=="Sunday"){
@@ -257,10 +259,11 @@
 			
 			 teamLogosLeft="-20px";
 		}
-		
+	
+	//create new animation timeline
     	var animateBanner = new TimelineMax({repeat:2, repeatDelay:3.5});
 		
-		
+		        //add array of animation tweens
 			animateBanner.add([
 				TweenMax.fromTo($("#text1"), 0.5, {autoAlpha:1,  y:"-100px", className:"+=blurOn", delay:0 },{autoAlpha:1, y:"0px", delay:0.5,display:"inline-block", ease: Bounce.easeOut}),										                TweenMax.fromTo($("#text1"), 0.5, {autoAlpha:1,  delay:0},{autoAlpha:1 , delay:0.8,className:"-=blurOn"}),
 				TweenMax.to($("#text1"), 0.5, { y:"150px",  delay:2}),
@@ -284,7 +287,7 @@
 											], "+=0", "normal");
 		
 			
-		
+		//additional animation timeline, to fade banner
 		var animateBannerFinish = new TimelineMax({repeat:1, delay:7, repeatDelay:7});		
 						
 		animateBannerFinish.add([
@@ -322,6 +325,7 @@
      </div>
      <div>
          <script type="text/javascript">
+		 //preload heavy images
 		<!--//--><![CDATA[//><!--
 			var images = new Array()
 			function preload() {
