@@ -1,4 +1,4 @@
-//weekday and month objects used to store date data, for display in messages on banner
+//weekday and month objects used to store data, for display in banner HTML
 var weekday={"0":{ full:"Sunday", short:"Sun"},
 			"1":{ full:"Monday",short:"Mon"},
 			"2":{ full:"Tuesday", short:"Tues"},
@@ -22,7 +22,7 @@ var months={"1": {month:"Jan"},
 			"12": {month:"Dec"}
 };
 
-//team data
+//team data, for display in banner HTML
 var teamNames={
 			"Atlanta":{long:"Atlanta United FC",abbrev:"ATL"},
 			"Chicago":{long:"Chicago Fire",abbrev:"CHI"},
@@ -49,7 +49,7 @@ var teamNames={
 			
 }
 
-//object where each banner size has different image sizes that are defined and used for correctly sizing images in the html
+//object where each banner size has different image sizes that are defined and used for correctly sizing images in the HTML
 var imgSizes={
 			"1280x100":{ logoBigSize:"1280x100", logoSmallSize:"1280x100",  teamDiagonalSize:"100",teamLogoBigSize:"100", teamLogoSmallSize:"95"},
 			"728x90":{logoBigSize:"728x90", logoSmallSize:"728x90", teamDiagonalSize:"90",teamLogoBigSize:"90", teamLogoSmallSize:"90"},
@@ -140,7 +140,7 @@ function getTimeStamp(date, month, hours, minutes) {
 		
 }
 
-//function to compute timestamp for game that ends on a different day
+//function to compute timestamp for game that ends on the following day
 function getTimeStampTomorrow(date, month, hours, minutes) {
        
     var dateNew= new Date( ((month ) + '/' + date + '/' + 2018 + " " + hours + ':'
@@ -171,7 +171,7 @@ function game( month, date, startTime, endTime, startTimeHours, startTimeMinutes
 	this.deportes=deportes;
 }
 
-//determine correct message to display on banner by comparing today's date with game date, and animate the banner
+//determine correct message to display on banner by comparing today's date with game date, update HTML, and animate the banner
 function changeMessage(bannerSize){
 	
 	//game to promote will be the first game in the games array, which is copied to gameToPromote object
