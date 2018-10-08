@@ -1,3 +1,4 @@
+//weekday and month objects used to store date data, for display in messages on banner
 var weekday={"0":{ full:"Sunday", short:"Sun"},
 			"1":{ full:"Monday",short:"Mon"},
 			"2":{ full:"Tuesday", short:"Tues"},
@@ -20,6 +21,8 @@ var months={"1": {month:"Jan"},
 			"11": {month:"Nov"},
 			"12": {month:"Dec"}
 };
+
+//team data
 var teamNames={
 			"Atlanta":{long:"Atlanta United FC",abbrev:"ATL"},
 			"Chicago":{long:"Chicago Fire",abbrev:"CHI"},
@@ -46,6 +49,7 @@ var teamNames={
 			
 }
 
+//object where each banner size has different image sizes that are defined and used for correctly sizing images in the html
 var imgSizes={
 			"1280x100":{ logoBigSize:"1280x100", logoSmallSize:"1280x100",  teamDiagonalSize:"100",teamLogoBigSize:"100", teamLogoSmallSize:"95"},
 			"728x90":{logoBigSize:"728x90", logoSmallSize:"728x90", teamDiagonalSize:"90",teamLogoBigSize:"90", teamLogoSmallSize:"90"},
@@ -58,9 +62,10 @@ var imgSizes={
 			
 var dfpAdID, cacheBust, adMacro,  offset=5.0, ctaDelay, showLive=false, num=0, showScheduleMessage, introText,   games=[];
 
-
+//banner clickthrough link when game is not live
 var defaultLink="http://www.espnfc.us/major-league-soccer/19/index";
 
+//code to calculate date for today 
 var now = new Date();
 
 var nowTimestamp=now.getTime(); 
@@ -71,13 +76,16 @@ var theMonth=now.getMonth()+1;
 var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
 var nextweek = new Date(now.getFullYear(), now.getMonth(), now.getDate()+7);
 nextweek=nextweek.getTime();
+//daylight savings time begins change offset
 if(nowTimestamp>=1489298400000){
 		offset=4.0;
 	}
 
+//ajax request to json file containing game data
 $.ajax({
-  url: "js/games.json",
+  url: "js/games.json",	
   success: function(data) {
+	  //parse through file, computing game start and end time. If a game has not ended, add it to games array
 	 for(var x in data){
 		 	var endTimeDate, endTimeMonth,  teamOne="", teamTwo="";
 		    startTimeParts=data[x].startTime.trim().split(":");
@@ -101,23 +109,23 @@ $.ajax({
 		  }
 	  
 	 }
-	 
+	 //sort the games array by game start time
 	 games=games.sort(function(a,b) {
 			return a.startTime - b.startTime;
 		});
  },
   error: function() {
-	   
+	console.log("error reading file");   
   },
   complete: function(data) {
 	
-        
+        //after parsing through data, invoke function to display correct tune in message on banner, and animate banner
     	changeMessage(bannerSize);
 
   }
 });
 
-
+//function to compute timestamp for game time
 function getTimeStamp(date, month, hours, minutes) {
        
     var dateNew= new Date( ((month ) + '/' + date + '/' + 2018 + " " + hours + ':'
@@ -132,6 +140,7 @@ function getTimeStamp(date, month, hours, minutes) {
 		
 }
 
+//function to compute timestamp for game that ends on a different day
 function getTimeStampTomorrow(date, month, hours, minutes) {
        
     var dateNew= new Date( ((month ) + '/' + date + '/' + 2018 + " " + hours + ':'
@@ -144,7 +153,7 @@ function getTimeStampTomorrow(date, month, hours, minutes) {
 		
 }
 
-
+//game class
 function game( month, date, startTime, endTime, startTimeHours, startTimeMinutes,   teamOne, teamTwo, network, deportes,liveLink, liveDeepLink  ) {
     this.month=month;
 	this.day=date;
@@ -162,11 +171,12 @@ function game( month, date, startTime, endTime, startTimeHours, startTimeMinutes
 	this.deportes=deportes;
 }
 
-
+//determine correct message to display on banner by comparing today's date with game date, and animate the banner
 function changeMessage(bannerSize){
 	
+	//game to promote will be the first game in the games array, which is copied to gameToPromote object
 	var gameToPromote=Object.assign({},games[0]);
-  
+     
 	var diffDays = Math.round(Math.abs((gameToPromote.startTime - nowTimestamp)/(oneDay)));
 	var showDay=dayOfWeekLong= new Date((gameToPromote.startTime));
 	
@@ -174,11 +184,11 @@ function changeMessage(bannerSize){
 	var dayOfWeekShort=dayOfWeekLong;
 	dayOfWeekLong=weekday[dayOfWeekLong.getDay()].full;
 	dayOfWeekShort=weekday[dayOfWeekShort.getDay()].short;
-		
+		//game is either live, today/tonight, or tomorrow 
 		if(diffDays==0){
 			
 			if(nowTimestamp>=gameToPromote.startTime){
-				
+				       //game is live
 					showScheduleMessage="";
 					if(gameToPromote.startTimeHours>=18){
 						introText="Tonight";	
@@ -187,6 +197,7 @@ function changeMessage(bannerSize){
 					showLive=true;
 					
 			}
+			
 			else{
 				if(showDay==theDay){
 					if(gameToPromote.startTimeHours>=18){
@@ -198,6 +209,7 @@ function changeMessage(bannerSize){
 			}
 			
 		}
+	       //game is either today/tonight or tomorrow
 		else if(diffDays>0&&diffDays<=1){
 			if(theDay!=showDay)
 				showScheduleMessage=introText="Tomorrow";	
@@ -210,6 +222,7 @@ function changeMessage(bannerSize){
 			}
 			
 		}
+	       //game is either tomorrow or this week (using day of week)
 		else if(diffDays>1&&diffDays<7){
 				if((theDay==showDay-1)||(theDay==6&&showDay==0))
 					showScheduleMessage=introText="Tomorrow";	
@@ -220,6 +233,7 @@ function changeMessage(bannerSize){
 					else introText="This<br/>"+dayOfWeekLong;
 				}
 		}
+	        //game is more than a week away
 		else if(diffDays>=7){
 			showScheduleMessage=introText=dayOfWeekLong+" "+months[parseInt(gameToPromote.month,10)	].month+" "+parseInt(gameToPromote.day,10);
 			if(bannerSize=="300x250"||bannerSize=="320x120") {
@@ -264,6 +278,7 @@ function changeMessage(bannerSize){
 		var timeOfDay="PM/ET";
 		
 		if(gameToPromote.startTimeHours<12) timeOfDay="AM/ET";
+	        //if game doesn't start on the hour, display minutes, otherwise don't display minutes, i.e. display 7 not 7:00
 		if(gameToPromote.startTimeMinutes!="00"){
 			gameToPromote.startTimeMinutes=":"+gameToPromote.startTimeMinutes;
 		}
@@ -272,8 +287,9 @@ function changeMessage(bannerSize){
 			 
 		}
 	
-		
+		//convert military time
 		if(gameToPromote.startTimeHours>12) gameToPromote.startTimeHours=gameToPromote.startTimeHours-12;
+	        
 		if(showLive==true){
 			 $("#liveCTA").css("display","block");
 			 if(bannerSize=="970x66"||bannerSize=="1024x66"){
@@ -290,6 +306,7 @@ function changeMessage(bannerSize){
 					
 					 $("#networksDiv").css("margin-top","0px"); 
 			 }
+			//when show is live change the clickthrough to live link
 			 var clickThrough=gameToPromote.liveLink;
 					$('#socWrap').unbind( "click", defaultClick )
 					$('#socWrap').bind("click",function(event){
@@ -297,7 +314,7 @@ function changeMessage(bannerSize){
 						});
 		}
 		
-		
+		//change 12:00pm and 12:00am to display Noon and Midnight
 		else if((gameToPromote.startTimeHours=="12"||gameToPromote.startTimeHours=="00")&&gameToPromote.startTimeMinutes==""){
 					
 					if(gameToPromote.startTimeHours=="12") {
@@ -310,23 +327,26 @@ function changeMessage(bannerSize){
 						 $("#showScheduleMessage").html(showScheduleMessage+" <span class='time'>Midnight</span>");	
 					}
 		}
+	        
 		else{	$("#showScheduleMessage").html(showScheduleMessage+" <span class='time'>"+gameToPromote.startTimeHours+gameToPromote.startTimeMinutes+"<span class='timeZone'>"+timeOfDay+"</span></span>");
 					
 		}
-		
+	 //start the animation after timeout to allow banner to load
 	 window.setTimeout( function(){animate();},200);
 			
 	  
 
 }
-	
+	//this function is used for detecting if in the app, which will change the way the clickthrough opens. Uses mraid
 			
 	function setClickThrough(url){
+		
 		if((navigator.userAgent.toLowerCase().indexOf('iphone') > -1 || navigator.userAgent.toLowerCase().indexOf('ipad') > -1 || navigator.userAgent.toLowerCase().indexOf('ipod') ) && typeof mraid !== 'undefined'  ){
 			if (showLive==true){
 				url=gameToPromote.liveDeepLink;
 			}
 		}
+		
 		if(typeof window.parent.app === 'object'){
 					event.preventDefault();
 					if(dfpAdID !== undefined){
@@ -352,11 +372,13 @@ function changeMessage(bannerSize){
 				
 	}
 	
+       //prepend dfp macro to clickthrough
 	function defaultClick(){
 		setClickThrough(adMacro+defaultLink);
 			
 	}
-		
+	
+        //set ad parameters, most importantly dfp macro, and add event handler to banner div wrap
 	function init(macro, adID, cacheBuster) {
 		 
 			if(adID) dfpAdID=adID;
