@@ -49,7 +49,7 @@ var teamNames={
 			
 }
 
-//object where each banner size has different image sizes that are defined and used for correctly sizing images in the HTML
+//object where each banner size has several properties defining which image sizes to use, for team specific logo and background images. 
 var imgSizes={
 			"1280x100":{ logoBigSize:"1280x100", logoSmallSize:"1280x100",  teamDiagonalSize:"100",teamLogoBigSize:"100", teamLogoSmallSize:"95"},
 			"728x90":{logoBigSize:"728x90", logoSmallSize:"728x90", teamDiagonalSize:"90",teamLogoBigSize:"90", teamLogoSmallSize:"90"},
